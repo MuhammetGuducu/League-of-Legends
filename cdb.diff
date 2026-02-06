@@ -1,0 +1,3995 @@
+{
+	"cst": {
+		"CooldownWorldAttack": {
+			"value": 36
+		},
+		"ToolsWeaponsDefaultBonus": {
+			"value": 1.05
+		},
+		"TownhallMoneyProd": {
+			"value": 0.5
+		},
+		"MilitaryLevels": {
+			"value": [
+				50,
+				1000,
+				2500,
+				5000
+			]
+		},
+		"DragonMilitaryLevels": {
+			"value": [
+				50,
+				500,
+				1250,
+				2500,
+				5000
+			]
+		},
+		"VikingsStarterRessources": {
+			"value": [
+				100,
+				250,
+				50
+			]
+		},
+		"CarolingiansStarterRessources": {
+			"value": [
+				250,
+				250,
+				50
+			]
+		},
+		"UncolonizePlayerTime": {
+			"value": 30
+		},
+		"FDiscoverBuilding": {
+			"value": 10
+		},
+		"ToolKrowns": {
+			"value": 50
+		},
+		"WeaponIron": {
+			"value": 10
+		},
+		"WeaponKrowns": {
+			"value": 100
+		},
+		"RelicIron": {
+			"value": 15
+		},
+		"RelicKrowns": {
+			"value": 150
+		},
+		"ToolsForgingTime": {
+			"value": 4
+		},
+		"WeaponForgingTime": {
+			"value": 8
+		},
+		"RelicForgingTime": {
+			"value": 16
+		},
+		"MilitaryExtensionKrowns": {
+			"value": 100
+		},
+		"MilitaryExtensionForgingTime": {
+			"value": 6
+		}
+	},
+	"tech": {
+		"Lumber": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"Weaponsmith": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"Mining": {
+			"values": {
+				"0": {
+					"val": 1.2
+				}
+			}
+		},
+		"BetterSilo": {
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"Drakkars": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"Coinage": {
+			"values": {
+				"0": {
+					"val": 1.1
+				},
+				"1": {
+					"val": 1.3
+				}
+			}
+		},
+		"MrSmith": {
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"MilitaryStrategy": {
+			"values": {
+				"1": {
+					"val": 0.15
+				}
+			}
+		},
+		"MonsterSlayer": {
+			"values": {
+				"1": {
+					"val": 0
+				}
+			}
+		},
+		"Negociate": {
+			"values": {
+				"0": {
+					"val": 1
+				},
+				"1": {
+					"val": 2
+				}
+			}
+		},
+		"Conqueror": {
+			"values": {
+				"0": {
+					"val": 1.5
+				}
+			}
+		},
+		"MoreAssign": {
+			"values": {
+				"0": {
+					"val": 2
+				}
+			}
+		},
+		"Barricades": {
+			"values": {
+				"0": {
+					"val": 0.4
+				}
+			}
+		},
+		"Wealth": {
+			"values": {
+				"0": {
+					"val": 1.1
+				},
+				"1": {
+					"val": 2
+				}
+			}
+		},
+		"Negociators": {
+			"values": {
+				"0": {
+					"val": 1
+				},
+				"1": {
+					"val": 0.5
+				},
+				"2": {
+					"val": 1.1
+				}
+			}
+		},
+		"Hibernate": {
+			"values": {
+				"0": {
+					"val": 1.5
+				}
+			}
+		},
+		"Harpoons": {
+			"values": {
+				"0": {
+					"val": 1.2
+				}
+			}
+		},
+		"SimpleLiving": {
+			"values": {
+				"0": {
+					"val": 0.75
+				}
+			}
+		},
+		"Herbalism": {
+			"values": {
+				"0": {
+					"val": 1.03
+				},
+				"1": {
+					"val": 2
+				},
+				"2": {
+					"val": 1.2
+				}
+			}
+		},
+		"Handiwork": {
+			"values": {
+				"0": {
+					"val": 1.03
+				},
+				"1": {
+					"val": 0.8
+				}
+			}
+		},
+		"Legacy": {
+			"values": {
+				"0": {
+					"val": 1.3
+				},
+				"1": {
+					"val": 2
+				}
+			}
+		},
+		"BlackMarket": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"BloodTears": {
+			"values": {
+				"1": {
+					"val": 1.05
+				}
+			}
+		},
+		"Metalcraft": {
+			"values": {
+				"0": {
+					"val": 20
+				},
+				"1": {
+					"val": 40
+				},
+				"2": {
+					"val": 40
+				},
+				"3": {
+					"val": 1.03
+				}
+			}
+		},
+		"BFTower": {
+			"values": {
+				"0": {
+					"val": 0.5
+				},
+				"1": {
+					"val": 0.5
+				}
+			}
+		},
+		"EndlessTide": {
+			"values": {
+				"0": {
+					"val": 1
+				}
+			}
+		},
+		"FromBeyond": {
+			"values": {
+				"0": {
+					"val": 1
+				},
+				"1": {
+					"val": 3
+				}
+			}
+		},
+		"CityBuilder": {
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"Poaching": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"MakingInterest": {
+			"values": {
+				"2": {
+					"val": 5
+				}
+			}
+		},
+		"Decima": {
+			"values": {
+				"0": {
+					"val": 0.15
+				}
+			}
+		},
+		"FertileSoils": {
+			"values": {
+				"0": {
+					"val": 0.05
+				}
+			}
+		},
+		"GoldCast": {
+			"values": {
+				"0": {
+					"val": 0.3
+				},
+				"2": {
+					"val": 0.05
+				}
+			}
+		},
+		"MilitaryWolf": {
+			"values": {
+				"0": {
+					"val": 1.3
+				}
+			}
+		},
+		"Supply": {
+			"values": {
+				"0": {
+					"val": 25
+				},
+				"2": {
+					"val": 100
+				}
+			}
+		},
+		"Dedication": {
+			"values": {
+				"2": {
+					"val": 0.25
+				}
+			}
+		},
+		"HomeCook": {
+			"values": {
+				"1": {
+					"val": 1.4
+				}
+			}
+		},
+		"FeastResist": {
+			"values": {
+				"0": {
+					"val": 1.25
+				}
+			}
+		},
+		"BearAwake": {
+			"values": {
+				"0": {
+					"val": 0.02
+				}
+			}
+		}
+	},
+	"ability": {
+		"WarEffort": {
+			"values": {
+				"0": {
+					"val": 0
+				},
+				"1": {
+					"val": 0
+				}
+			}
+		},
+		"GolemBurn": {
+			"values": {
+				"0": {
+					"val": 15
+				},
+				"1": {
+					"val": 4
+				},
+				"2": {
+					"val": 0.5
+				}
+			}
+		},
+		"MilitaryTrainer": {
+			"values": {
+				"0": {
+					"val": 0
+				},
+				"1": {
+					"val": 0
+				}
+			}
+		},
+		"Battleground": {
+			"values": {
+				"0": {
+					"val": 20
+				},
+				"1": {
+					"val": 0
+				}
+			}
+		},
+		"IronGolemAoE": {
+			"values": {
+				"1": {
+					"val": 2
+				}
+			}
+		},
+		"FrozenStrike": {
+			"values": {
+				"0": {
+					"val": 8
+				},
+				"1": {
+					"val": 0.9
+				},
+				"2": {
+					"val": 10
+				},
+				"3": {
+					"val": 20
+				}
+			}
+		},
+		"BurnWyvern": {
+			"values": {
+				"0": {
+					"val": 0.01
+				},
+				"1": {
+					"val": 10
+				}
+			}
+		},
+		"BurnWyvernAura": {
+			"values": {
+				"0": {
+					"val": 0.01
+				},
+				"1": {
+					"val": 10
+				},
+				"2": {
+					"val": 100
+				}
+			}
+		},
+		"BearHunting": {
+			"values": {
+				"1": {
+					"val": 4
+				}
+			}
+		},
+		"FoesCharge": {
+			"values": {
+				"0": {
+					"val": 5
+				},
+				"1": {
+					"val": 5
+				},
+				"2": {
+					"val": 100
+				},
+				"3": {
+					"val": 10
+				}
+			}
+		},
+		"IronGolemDebuff": {
+			"values": {
+				"0": {
+					"val": 0.1
+				},
+				"1": {
+					"val": 10
+				}
+			}
+		},
+		"SupplyMalus": {
+			"values": {
+				"0": {
+					"val": 10
+				},
+				"1": {
+					"val": 0
+				}
+			}
+		},
+		"NiflheimTower": {
+			"values": {
+				"0": {
+					"val": 10
+				},
+				"1": {
+					"val": 5
+				},
+				"4": {
+					"val": 0.8
+				}
+			}
+		},
+		"IdavollThunderTower": {
+			"values": {
+				"0": {
+					"val": 1
+				},
+				"1": {
+					"val": 1
+				},
+				"2": {
+					"val": 15
+				},
+				"3": {
+					"val": 6
+				}
+			}
+		},
+		"SummerVanir_Dot": {
+			"values": {
+				"0": {
+					"val": 1.5
+				},
+				"1": {
+					"val": 10
+				}
+			}
+		},
+		"MuspelheimTowers": {
+			"values": {
+				"1": {
+					"val": 5
+				},
+				"2": {
+					"val": 1.5
+				}
+			}
+		},
+		"NidavellirTower": {
+			"values": {
+				"0": {
+					"val": 1
+				}
+			}
+		},
+		"VanaheimTower": {
+			"values": {
+				"0": {
+					"val": 1
+				},
+				"1": {
+					"val": 10
+				}
+			}
+		},
+		"NothingExpansive": {
+			"values": {
+				"0": {
+					"val": 0.25
+				}
+			}
+		},
+		"WarriorSlaves": {
+			"values": {
+				"0": {
+					"val": 0
+				},
+				"1": {
+					"val": 0
+				}
+			}
+		}
+	},
+	"event": {
+		"FafnirDemands": {
+			"props": {
+				"fafnirAskedRes": {
+					"0": {
+						"resWeight": [
+							0,
+							0.8,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							1,
+							0.6,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							2.0000605394100326,
+							0.3,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000
+						]
+					},
+					"1": {
+						"resWeight": [
+							0,
+							0.8,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							1,
+							0.6,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							2.0000605394100326,
+							0.3,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000
+						]
+					},
+					"2": {
+						"resWeight": [
+							0.007112284245746883,
+							0,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							1,
+							0.3,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							2.0000605394100326,
+							0.7,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000
+						]
+					},
+					"3": {
+						"resWeight": [
+							0,
+							0,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							1,
+							0.3,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							2.0000605394100326,
+							0.7,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000
+						]
+					},
+					"4": {
+						"resWeight": [
+							0,
+							0,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							1,
+							0.3,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000,
+							2.0000605394100326,
+							0.7,
+							-10000000000,
+							2,
+							-10000000000,
+							-10000000000
+						]
+					}
+				}
+			}
+		}
+	},
+	"neutral": {
+		"MyrkalfarFaction": {
+			"eradicationReward": {
+				"0": {
+					"qty": 100
+				},
+				"1": {
+					"qty": 25
+				},
+				"2": {
+					"qty": 25
+				},
+				"3": {
+					"qty": 25
+				}
+			}
+		}
+	},
+	"unit": {
+		"DwarfChampion": {
+			"produce": {
+				"0": {
+					"q": 2
+				},
+				"1": {
+					"q": 0.035
+				},
+				"2": {
+					"q": 0.035
+				},
+				"3": {
+					"q": 0.035
+				},
+				"4": {
+					"q": 0.035
+				},
+				"5": {
+					"q": 0.035
+				},
+				"6": {
+					"q": 0.035
+				},
+				"7": {
+					"q": 0.035
+				},
+				"8": {
+					"q": 0.035
+				}
+			},
+			"phases": {
+				"0": {
+					"pv": 65,
+					"atk": 11,
+					"def": 5,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						}
+					}
+				}
+			}
+		},
+		"Tracker": {
+			"phases": {
+				"0": {
+					"pv": 40
+				}
+			}
+		},
+		"Mercenary": {
+			"phases": {
+				"0": {
+					"pv": 40,
+					"def": 5,
+					"lootTable": {
+						"0": {
+							"qty": 0
+						},
+						"2": {
+							"qty": 3
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 15
+					}
+				},
+				"projectileResist": 0.4,
+				"projectileResistUpgraded": 0.35
+			}
+		},
+		"Hero01": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Liv": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero02": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero05_Bis": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero03": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero10": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero04": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Berserker": {
+			"phases": {
+				"0": {
+					"pv": 65,
+					"def": 5,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				},
+				"runSpeedCoeff": 0.75
+			}
+		},
+		"Maiden": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"WarchiefDragon": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"HorseMaiden": {
+			"produce": {
+				"0": {
+					"q": 3
+				},
+				"1": {
+					"q": 0.15
+				},
+				"2": {
+					"q": 0.15
+				},
+				"3": {
+					"q": 0.15
+				},
+				"4": {
+					"q": 0.15
+				},
+				"5": {
+					"q": 0.15
+				},
+				"6": {
+					"q": 0.15
+				},
+				"7": {
+					"q": 0.15
+				},
+				"8": {
+					"q": 0.15
+				},
+				"9": {
+					"q": 0.15
+				}
+			},
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 15,
+					"def": 10,
+					"lootTable": {
+						"0": {
+							"qty": 100
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 6,
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"HorseHero": {
+			"produce": {
+				"0": {
+					"q": 3
+				},
+				"1": {
+					"q": 0.035
+				},
+				"2": {
+					"q": 0.035
+				},
+				"3": {
+					"q": 0.035
+				},
+				"4": {
+					"q": 0.035
+				},
+				"5": {
+					"q": 0.035
+				},
+				"6": {
+					"q": 0.035
+				},
+				"7": {
+					"q": 0.035
+				},
+				"8": {
+					"q": 0.035
+				},
+				"9": {
+					"q": 0.035
+				}
+			},
+			"phases": {
+				"0": {
+					"pv": 60,
+					"atk": 6,
+					"def": 8
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 150
+					}
+				}
+			}
+		},
+		"Kara": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"OxHero": {
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 250
+					},
+					"1": {
+						"qty": 3,
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"LynxHero": {
+			"phases": {
+				"0": {
+					"atk": 6
+				}
+			}
+		},
+		"SquirrelHero": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"RatMaiden": {
+			"produce": {
+				"0": {
+					"q": 2
+				}
+			},
+			"phases": {
+				"0": {
+					"pv": 150,
+					"atk": 14,
+					"def": 25,
+					"dodge": 0.1,
+					"lootTable": {
+						"0": {
+							"qty": 150
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 7,
+						"res": "Gemstone"
+					}
+				},
+				"projectileResist": 0.5
+			}
+		},
+		"EagleHero": {
+			"phases": {
+				"0": {
+					"pv": 90,
+					"atk": 50,
+					"def": 11,
+					"lootTable": {
+						"0": {
+							"qty": 150
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 400
+					},
+					"1": {
+						"qty": 6,
+						"res": "Gemstone"
+					}
+				},
+				"runSpeedCoeff": 1.5
+			}
+		},
+		"LionHero": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hildegard": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Carloman": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Lothaire": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"StoatHero": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Nominoe": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"OwlHero": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"TurtleHero": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 9,
+					"def": 18,
+					"dodge": 0.05,
+					"lootTable": {
+						"0": {
+							"qty": 100
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 6,
+						"res": "Gemstone"
+					}
+				},
+				"projectileResist": 0.75
+			}
+		},
+		"HippogriffHero": {
+			"produce": {
+				"1": {
+					"q": 0.2
+				},
+				"2": {
+					"q": 0.2
+				},
+				"3": {
+					"q": 0.2
+				},
+				"4": {
+					"q": 0.2
+				},
+				"5": {
+					"q": 0.2
+				},
+				"6": {
+					"q": 0.2
+				},
+				"7": {
+					"q": 0.2
+				},
+				"8": {
+					"q": 0.2
+				},
+				"9": {
+					"q": 0.2
+				}
+			},
+			"phases": {
+				"0": {
+					"pv": 110,
+					"atk": 20,
+					"def": 14,
+					"lootTable": {
+						"0": {
+							"qty": 150
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 6,
+						"res": "Gemstone"
+					}
+				},
+				"projectileResist": 0.9
+			}
+		},
+		"Berserker03": {
+			"phases": {
+				"0": {
+					"pv": 75,
+					"atk": 35,
+					"def": 8,
+					"lootTable": {
+						"0": {
+							"qty": 100
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Maiden02": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Maiden03": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero06": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero07": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero08": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Surtr": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"OldDragon": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"GiantHero": {
+			"phases": {
+				"0": {
+					"pv": 200,
+					"atk": 10,
+					"def": 60,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 200
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				},
+				"1": {
+					"pv": 200,
+					"atk": 10,
+					"def": 60,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 200
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				},
+				"2": {
+					"pv": 200,
+					"atk": 10,
+					"def": 60,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 200
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				},
+				"3": {
+					"pv": 200,
+					"atk": 10,
+					"def": 60,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 200
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				}
+			},
+			"props": {
+				"projectileResist": 1.3
+			}
+		},
+		"Hero05": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Hero09": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"Berserker02": {
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 6,
+						"res": "Gemstone"
+					}
+				}
+			}
+		},
+		"LichKing": {
+			"phases": {
+				"0": {
+					"pv": 300,
+					"def": 65,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 1,
+							"res": "RimeSteel"
+						}
+					}
+				}
+			}
+		},
+		"Giant": {
+			"phases": {
+				"0": {
+					"pv": 100,
+					"def": 50,
+					"lootTable": {
+						"0": {
+							"qty": 250
+						},
+						"1": {
+							"qty": 100
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				}
+			},
+			"props": {
+				"projectileResist": 1.5
+			}
+		},
+		"Myrkalfar": {
+			"phases": {
+				"0": {
+					"pv": 60,
+					"def": 8
+				}
+			}
+		},
+		"Lightalfar": {
+			"phases": {
+				"0": {
+					"pv": 40,
+					"atk": 8,
+					"def": 5,
+					"lootTable": {
+						"0": {
+							"qty": 25
+						},
+						"2": {
+							"qty": 25,
+							"res": "Wood",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"Kobold": {
+			"phases": {
+				"0": {
+					"pv": 30,
+					"atk": 15
+				}
+			}
+		},
+		"DwarfFoe": {
+			"phases": {
+				"0": {
+					"pv": 40,
+					"atk": 11,
+					"def": 7,
+					"lootTable": {
+						"0": {
+							"qty": 25
+						},
+						"1": {
+							"reqAbility": "GreatHunt"
+						},
+						"2": {
+							"qty": 25,
+							"res": "Money",
+							"onlyForClan": null
+						}
+					}
+				}
+			}
+		},
+		"DwarfChampionFoe": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 11,
+					"def": 7,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 50,
+							"res": "Wood",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"Death": {
+			"phases": {
+				"0": {
+					"atk": 22,
+					"def": 2,
+					"lootTable": {
+						"0": {
+							"qty": 5
+						},
+						"1": {
+							"qty": 5
+						},
+						"2": {
+							"qty": 5,
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"UndeadGiant": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 18,
+					"def": 12,
+					"lootTable": {
+						"0": {
+							"qty": 100
+						},
+						"1": {
+							"qty": 60
+						},
+						"2": {
+							"qty": 100,
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"GiantCrow": {
+			"phases": {
+				"0": {
+					"lootTable": {
+						"0": {
+							"qty": 15
+						}
+					}
+				}
+			}
+		},
+		"BearMaiden": {
+			"phases": {
+				"0": {
+					"pv": 100,
+					"atk": 7,
+					"def": 12,
+					"dodge": 0.02,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						}
+					}
+				}
+			},
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 150,
+						"res": "Food"
+					},
+					"1": {
+						"qty": 1,
+						"res": "Gemstone"
+					}
+				},
+				"projectileResist": 0.9
+			}
+		},
+		"LynxBrown": {
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 150
+					},
+					"1": {
+						"qty": 50
+					}
+				}
+			}
+		},
+		"LynxWhite": {
+			"props": {
+				"recruitCost": {
+					"0": {
+						"qty": 150,
+						"res": "Food"
+					},
+					"1": {
+						"qty": 50,
+						"res": "Money"
+					}
+				}
+			}
+		},
+		"BabyWyvern": {
+			"phases": {
+				"0": {
+					"pv": 300,
+					"atk": 16,
+					"def": 72,
+					"range": 5,
+					"lootTable": {
+						"0": {
+							"qty": 1,
+							"res": "RimeSteel"
+						}
+					}
+				}
+			},
+			"props": {
+				"projectileResist": 0.5
+			}
+		},
+		"Valkyrie": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 15,
+					"def": 10,
+					"lootTable": {
+						"2": {
+							"qty": 100,
+							"res": "Wood",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"IdavollValkyrie": {
+			"phases": {
+				"0": {
+					"atk": 9,
+					"def": 6,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 50,
+							"res": "Food",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"SpecterWarrior": {
+			"phases": {
+				"0": {
+					"pv": 40,
+					"atk": 6,
+					"def": 4,
+					"lootTable": {
+						"0": {
+							"qty": 25
+						},
+						"2": {
+							"qty": 25,
+							"res": "Food",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"Golem": {
+			"phases": {
+				"0": {
+					"pv": 200,
+					"atk": 10,
+					"def": 60,
+					"lootTable": {
+						"0": {
+							"qty": 500
+						},
+						"1": {
+							"qty": 100
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						},
+						"3": {
+							"qty": 1
+						}
+					}
+				}
+			},
+			"props": {
+				"projectileResist": 0.1
+			}
+		},
+		"SmallGolem": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 15,
+					"def": 12,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 1,
+							"res": "Iron",
+							"reqTech": null
+						},
+						"3": {
+							"qty": 2
+						}
+					}
+				}
+			}
+		},
+		"IronGolem": {
+			"phases": {
+				"0": {
+					"pv": 200,
+					"atk": 20,
+					"def": 55,
+					"lootTable": {
+						"0": {
+							"qty": 250
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						},
+						"3": {
+							"qty": 1
+						}
+					}
+				}
+			}
+		},
+		"NidavellirIronGolem": {
+			"phases": {
+				"0": {
+					"pv": 200,
+					"def": 55,
+					"lootTable": {
+						"0": {
+							"qty": 250
+						},
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"RimesteelGolem": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 22,
+					"def": 15,
+					"lootTable": {
+						"1": {
+							"qty": 80
+						},
+						"2": {
+							"qty": 4,
+							"res": "Stone",
+							"reqTech": null
+						},
+						"3": {
+							"qty": 2,
+							"res": "Iron"
+						}
+					}
+				}
+			}
+		},
+		"IceGolem": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 13,
+					"def": 9,
+					"lootTable": {
+						"2": {
+							"qty": 100,
+							"res": "Food",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"ColossalBoar": {
+			"phases": {
+				"0": {
+					"pv": 300,
+					"atk": 16,
+					"def": 6,
+					"lootTable": {
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel"
+						}
+					}
+				}
+			},
+			"props": {
+				"value": 9,
+				"projectileResist": 1.2
+			}
+		},
+		"DwarfKingFoe": {
+			"phases": {
+				"0": {
+					"atk": 13,
+					"def": 9,
+					"lootTable": {
+						"0": {
+							"qty": 50
+						},
+						"1": {
+							"qty": 40,
+							"reqAbility": "GreatHunt"
+						},
+						"2": {
+							"qty": 50,
+							"res": "Money",
+							"onlyForClan": null
+						}
+					}
+				}
+			}
+		},
+		"Dracula": {
+			"phases": {
+				"0": {
+					"pv": 300,
+					"atk": 15,
+					"def": 40,
+					"dodge": 0
+				}
+			},
+			"props": {
+				"runSpeedCoeff": 5,
+				"projectileResist": 0.5
+			}
+		},
+		"Vanir": {
+			"phases": {
+				"0": {
+					"pv": 100,
+					"atk": 5,
+					"def": 40,
+					"lootTable": {
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				},
+				"1": {
+					"pv": 100,
+					"def": 40,
+					"lootTable": {
+						"2": {
+							"qty": 1,
+							"res": "RimeSteel",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveValkyrie": {
+			"phases": {
+				"0": {
+					"atk": 15,
+					"def": 10,
+					"lootTable": {
+						"0": {
+							"qty": 100,
+							"res": "Wood"
+						},
+						"1": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 100,
+							"res": "MilitaryXP",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveSmallGolem": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"def": 12,
+					"lootTable": {
+						"0": {
+							"qty": 2,
+							"res": "Stone"
+						},
+						"1": {
+							"qty": 1,
+							"res": "Iron",
+							"reqAbility": null
+						},
+						"2": {
+							"qty": 35,
+							"res": "HuntTrophy",
+							"reqTech": null,
+							"reqAbility": "GreatHunt"
+						},
+						"3": {
+							"qty": 50,
+							"res": "MilitaryXP"
+						}
+					}
+				}
+			}
+		},
+		"WaveIceGolem": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 13,
+					"def": 9,
+					"lootTable": {
+						"0": {
+							"qty": 100
+						},
+						"1": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 100,
+							"res": "Food",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveUndeadGiant": {
+			"phases": {
+				"0": {
+					"pv": 120,
+					"atk": 18,
+					"def": 12,
+					"lootTable": {
+						"0": {
+							"qty": 100,
+							"res": "Money"
+						},
+						"1": {
+							"qty": 60
+						},
+						"2": {
+							"qty": 100,
+							"res": "MilitaryXP",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveIdavollValkyrie": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 9,
+					"def": 6,
+					"lootTable": {
+						"0": {
+							"qty": 50,
+							"res": "Food"
+						},
+						"1": {
+							"qty": 50
+						},
+						"2": {
+							"qty": 50,
+							"res": "MilitaryXP",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveLightalfar": {
+			"phases": {
+				"0": {
+					"pv": 40,
+					"def": 5,
+					"lootTable": {
+						"0": {
+							"qty": 25,
+							"res": "Wood"
+						},
+						"1": {
+							"qty": 20
+						},
+						"2": {
+							"qty": 25,
+							"res": "MilitaryXP",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveDwarfChampion": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 11,
+					"def": 7,
+					"lootTable": {
+						"0": {
+							"qty": 15,
+							"res": "HuntTrophy",
+							"reqAbility": "GreatHunt"
+						},
+						"1": {
+							"qty": 50,
+							"res": "MilitaryXP",
+							"reqAbility": null
+						},
+						"2": {
+							"qty": 50,
+							"res": "Wood",
+							"reqTech": null
+						}
+					}
+				}
+			}
+		},
+		"WaveDwarfKing": {
+			"phases": {
+				"0": {
+					"pv": 80,
+					"atk": 13,
+					"def": 9,
+					"lootTable": {
+						"0": {
+							"qty": 50,
+							"res": "Money"
+						},
+						"1": {
+							"qty": 40,
+							"reqAbility": "GreatHunt"
+						},
+						"2": {
+							"qty": 50,
+							"res": "MilitaryXP",
+							"reqTech": null,
+							"onlyForClan": null
+						}
+					}
+				}
+			}
+		},
+		"BerserkerBoar": {
+			"props": {
+				"recruitCost": {
+					"1": {
+						"res": "Gemstone"
+					}
+				}
+			}
+		}
+	},
+	"building": {
+		"WoodLodge": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Fields": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"HunterLodge": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"FishermanHouse": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"FoodSilo": {
+			"values": {
+				"0": {
+					"val": 1.05,
+					"upgradedVals": {
+						"0": {
+							"val": 1.1
+						}
+					}
+				}
+			}
+		},
+		"TradingPost": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"MarketPlace": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Port": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"OfferingWell": {
+			"cost": {
+				"0": {
+					"q": 100
+				},
+				"1": {
+					"q": 1,
+					"r": "Gemstone"
+				}
+			}
+		},
+		"CarvedStone": {
+			"cost": {
+				"0": {
+					"q": 1,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"Sheepfold": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"RavenPort": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Fishery": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"FoodPicker": {
+			"values": []
+		},
+		"YardFarm": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Fisigard": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Buret": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"WoodPicker": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"TradeStore": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Market": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"MerchantPort": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"ExpeditionPort": {
+			"values": {
+				"0": {
+					"upgradedVals": {
+						"0": {
+							"val": 0.9
+						}
+					}
+				}
+			}
+		},
+		"Smithy": {
+			"values": {
+				"0": {
+					"val": 1.05,
+					"upgradedVals": {
+						"0": {
+							"val": 1.05
+						}
+					}
+				}
+			}
+		},
+		"Brazier": {
+			"cost": {
+				"1": {
+					"q": 10
+				}
+			}
+		},
+		"MuspelheimTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 1.6,
+					"upgradedVals": {
+						"0": {
+							"val": 1.92
+						},
+						"1": {
+							"val": 2.24
+						}
+					}
+				},
+				"2": {
+					"val": 1.6,
+					"upgradedVals": {
+						"0": {
+							"val": 1.92
+						},
+						"1": {
+							"val": 2.24
+						}
+					}
+				}
+			},
+			"props": {
+				"atk": 2,
+				"buildTime": 120
+			}
+		},
+		"IdavollTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 3,
+					"upgradedVals": {
+						"0": {
+							"val": 2.4
+						},
+						"1": {
+							"val": 2.8
+						}
+					}
+				},
+				"1": {
+					"val": 80
+				},
+				"2": {
+					"val": 3,
+					"upgradedVals": {
+						"0": {
+							"val": 2.4
+						},
+						"1": {
+							"val": 2.8
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 120
+			}
+		},
+		"NiflheimTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 1.1,
+					"upgradedVals": {
+						"0": {
+							"val": 1.32
+						},
+						"1": {
+							"val": 1.54
+						}
+					}
+				},
+				"2": {
+					"val": 1.1,
+					"upgradedVals": {
+						"0": {
+							"val": 1.32
+						},
+						"1": {
+							"val": 1.54
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 120
+			}
+		},
+		"NidavellirTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"props": {
+				"buildTime": 120
+			}
+		},
+		"VanaheimTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 1.3,
+					"upgradedVals": {
+						"0": {
+							"val": 1.56
+						},
+						"1": {
+							"val": 1.82
+						}
+					}
+				},
+				"2": {
+					"val": 1.3,
+					"upgradedVals": {
+						"0": {
+							"val": 1.56
+						},
+						"1": {
+							"val": 1.82
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 120
+			}
+		},
+		"MuspelheimBarricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"IdavollBarricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"NiflheimBarricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"NidavellirBarricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"VanaheimBarricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"GuardTower": {
+			"cost": {
+				"0": {
+					"q": 250
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 2,
+					"upgradedVals": {
+						"0": {
+							"val": 2.2
+						},
+						"1": {
+							"val": 2.4
+						}
+					}
+				},
+				"2": {
+					"val": 0,
+					"upgradedVals": {
+						"0": {
+							"val": 0
+						},
+						"1": {
+							"val": 0
+						}
+					}
+				},
+				"3": {
+					"val": 2.4,
+					"upgradedVals": {
+						"0": {
+							"val": 2.4
+						},
+						"1": {
+							"val": 2.4
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 75
+			}
+		},
+		"Temple": {
+			"cost": {
+				"0": {
+					"q": 500
+				},
+				"1": {
+					"q": 500
+				},
+				"2": {
+					"q": 25
+				}
+			},
+			"values": {
+				"1": {
+					"val": 2,
+					"upgradedVals": {
+						"0": {
+							"val": 3
+						}
+					}
+				},
+				"4": {
+					"val": 2,
+					"upgradedVals": {
+						"0": {
+							"val": 3
+						}
+					}
+				},
+				"5": {
+					"val": 100,
+					"upgradedVals": {
+						"0": {
+							"val": 100
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 90
+			}
+		},
+		"Lighthouse": {
+			"values": {
+				"0": {
+					"val": 1.1
+				}
+			}
+		},
+		"Lure": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			}
+		},
+		"LureSacred": {
+			"cost": {
+				"0": {
+					"q": 150
+				}
+			}
+		},
+		"WatchTower": {
+			"cost": {
+				"0": {
+					"q": 300
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 2,
+					"upgradedVals": {
+						"0": {
+							"val": 2.2
+						},
+						"1": {
+							"val": 2.4
+						}
+					}
+				},
+				"1": {
+					"val": 2.4,
+					"upgradedVals": {
+						"0": {
+							"val": 2.4
+						},
+						"1": {
+							"val": 2.4
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 150
+			}
+		},
+		"Fort": {
+			"cost": {
+				"0": {
+					"q": 300
+				},
+				"1": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 2,
+					"upgradedVals": {
+						"0": {
+							"val": 2.2
+						},
+						"1": {
+							"val": 2.4
+						}
+					}
+				},
+				"5": {
+					"val": 0,
+					"upgradedVals": {
+						"0": {
+							"val": 0
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 120
+			}
+		},
+		"Duchy": {
+			"cost": {
+				"1": {
+					"q": 50
+				}
+			},
+			"values": {
+				"0": {
+					"val": 0.2,
+					"upgradedVals": {
+						"0": {
+							"val": 0.25
+						},
+						"1": {
+							"val": 0.3
+						}
+					}
+				},
+				"4": {
+					"val": 0,
+					"upgradedVals": {
+						"0": {
+							"val": 0
+						},
+						"1": {
+							"val": 0
+						}
+					}
+				}
+			},
+			"props": {
+				"buildTime": 60
+			}
+		},
+		"DuchyEco": {
+			"values": {
+				"0": {
+					"val": 0.25,
+					"upgradedVals": {
+						"0": {
+							"val": 0.25
+						}
+					}
+				}
+			}
+		},
+		"DuchyMilitary": {
+			"cost": {
+				"0": {
+					"q": 200
+				},
+				"1": {
+					"q": 100
+				},
+				"2": {
+					"q": 3,
+					"r": "Gemstone"
+				}
+			},
+			"values": {
+				"0": {
+					"val": 2.4,
+					"upgradedVals": {
+						"0": {
+							"val": 2.4
+						}
+					}
+				}
+			}
+		},
+		"RuneStone": {
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"CircleStone": {
+			"values": {
+				"1": {
+					"val": 1.05
+				}
+			}
+		},
+		"Grove": {
+			"values": {
+				"0": {
+					"val": 1.05
+				}
+			}
+		},
+		"DeerSpawner": {
+			"cost": []
+		},
+		"ThorWrath": {
+			"values": {
+				"0": {
+					"val": 1.3
+				}
+			},
+			"props": {
+				"winRes": {
+					"0": {
+						"qty": 0
+					}
+				}
+			}
+		},
+		"Geyser": {
+			"values": {
+				"0": {
+					"val": 0
+				},
+				"1": {
+					"val": 1.3
+				}
+			}
+		},
+		"AncientGraveyard": {
+			"values": {
+				"0": {
+					"val": 500
+				},
+				"1": {
+					"val": 4
+				},
+				"2": {
+					"val": 1.05
+				}
+			}
+		},
+		"PillarOfGod": {
+			"values": []
+		},
+		"NidavellirGate": {
+			"values": []
+		},
+		"FountainFame": {
+			"values": {
+				"0": {
+					"val": 700
+				},
+				"1": {
+					"val": 1.05
+				}
+			}
+		},
+		"CeremonialBonfire": {
+			"values": {
+				"0": {
+					"val": 3
+				}
+			}
+		},
+		"Barricade": {
+			"cost": {
+				"0": {
+					"q": 80
+				}
+			},
+			"values": {
+				"2": {
+					"val": 0.1
+				},
+				"3": {
+					"val": 0.02
+				}
+			},
+			"props": {
+				"buildTime": 40
+			}
+		}
+	},
+	"clan": {
+		"Stag": {
+			"bonuses": {
+				"0": {
+					"values": {
+						"CStartFood": {
+							"val": 150
+						},
+						"CStartWood": {
+							"val": 100
+						},
+						"CStartMoney": {
+							"val": 0
+						},
+						"CStartLore": {
+							"val": 50
+						}
+					}
+				}
+			}
+		},
+		"Bear": {
+			"bonuses": {
+				"2": {
+					"values": {
+						"CMilitaryWinter": {
+							"val": 1.15
+						}
+					}
+				}
+			}
+		}
+	},
+	"ai": {
+		"FoodFlux": {
+			"props": {
+				"curve": [
+					0,
+					0,
+					-0.4797690013259113,
+					-0.049662741512574285,
+					0.5604170216496414,
+					0.057136165208881484,
+					0.9970103108973745,
+					0.40446852358833835,
+					-0.3529903189662522,
+					-0.003276720362070329,
+					-0.5,
+					-0.04195426947939841
+				]
+			}
+		},
+		"WoodFlux": {
+			"props": {
+				"curve": [
+					0,
+					0,
+					-0.4797690013259113,
+					-0.049662741512574285,
+					0.5604170216496414,
+					0.057136165208881484,
+					0.9970103108973745,
+					0.40446852358833835,
+					-0.3529903189662522,
+					-0.003276720362070329,
+					-0.5,
+					-0.04195426947939841
+				]
+			}
+		},
+		"MoneyFlux": {
+			"props": {
+				"curve": [
+					0,
+					0,
+					-0.4797690013259113,
+					-0.049662741512574285,
+					0.5604170216496414,
+					0.057136165208881484,
+					0.9970103108973745,
+					0.40446852358833835,
+					-0.3529903189662522,
+					-0.003276720362070329,
+					-0.5,
+					-0.04195426947939841
+				]
+			}
+		},
+		"Expansion": {
+			"props": {
+				"expansionProps": {
+					"yearRatioPerLevel": {
+						"0": {
+							"ratio": [
+								0,
+								0,
+								-0.5,
+								0,
+								0.3333333333333333,
+								0,
+								1,
+								0.5,
+								-0.3333333333333333,
+								0,
+								-0.5,
+								0
+							]
+						},
+						"1": {
+							"ratio": [
+								0,
+								0,
+								-10000000000,
+								2,
+								-10000000000,
+								-10000000000,
+								0.9981681034482759,
+								0.8032169117647059,
+								-10000000000,
+								2,
+								-10000000000,
+								-10000000000
+							]
+						},
+						"2": {
+							"ratio": [
+								0,
+								0,
+								-0.5,
+								0,
+								0.09938936781609196,
+								0,
+								0.2032866379310344,
+								0.40321691176470587,
+								-0.14749013726421478,
+								-0.002634328596825379,
+								0.43573989005783853,
+								0.009394312939640548,
+								1,
+								1,
+								-0.48050404047104633,
+								0.0002757352941176183,
+								0.06456672349677808,
+								-0.00003706492435020194
+							]
+						}
+					},
+					"clanSpecifics": {
+						"0": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"1": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"2": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"3": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"4": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"5": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"6": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"7": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"8": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"9": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"10": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"11": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"12": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"13": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"14": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"15": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"16": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"17": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"18": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"19": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						},
+						"20": {
+							"specifics": {
+								"buildingSlots": [
+									0,
+									0.9999540441176471,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.5,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								],
+								"happyness": [
+									0,
+									1,
+									-0.5,
+									0,
+									0.3333333333333333,
+									0,
+									1,
+									0.2,
+									-0.3333333333333333,
+									0,
+									-0.5,
+									0
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"UnitAssignation": {
+			"props": {
+				"assignationProps": {
+					"clansSpecifics": {
+						"0": {
+							"specifics": {
+								"minVillagerPriceRatio": [
+									0,
+									0.5,
+									0,
+									0.2646599264705882,
+									0.41901939655172415,
+									0.09113051470588229,
+									0.5535021551724137,
+									0.7293658088235294,
+									-0.23565014367816092,
+									0,
+									0.3413793103448276,
+									0.014705882352941124,
+									1,
+									1,
+									-10000000000,
+									2,
+									-10000000000,
+									-10000000000
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"rule": {
+		"VillagerWerewolf": {
+			"props": {
+				"curve": [
+					0,
+					0.6027451459099264,
+					-10000000000,
+					2,
+					-10000000000,
+					-10000000000,
+					4.397825955233612,
+					0.20002873085078277,
+					-10000000000,
+					2,
+					-10000000000,
+					-10000000000,
+					7.986108513877277,
+					0.10075305975973606,
+					-10000000000,
+					2,
+					-10000000000,
+					-10000000000,
+					51.29265805390721,
+					0.09720750007791296,
+					-10000000000,
+					2,
+					-10000000000,
+					-10000000000
+				]
+			}
+		}
+	},
+	"conquestBonus": {
+		"BWarband": {
+			"advancedVals": {
+				"0": {
+					"val": 5
+				}
+			}
+		},
+		"BWatchTower": {
+			"baseVals": {
+				"0": {
+					"val": 0.25
+				}
+			},
+			"advancedVals": {
+				"0": {
+					"val": 0.25
+				}
+			}
+		},
+		"BResBonus": {
+			"baseVals": {
+				"0": {
+					"val": 20
+				}
+			}
+		},
+		"BWinter": {
+			"baseVals": {
+				"0": {
+					"val": 0.5
+				}
+			},
+			"advancedVals": {
+				"0": {
+					"val": 0.75
+				}
+			}
+		},
+		"BMineral": {
+			"advancedVals": {
+				"0": {
+					"val": 0.5
+				}
+			}
+		},
+		"BPopGrowth": {
+			"advancedVals": {
+				"0": {
+					"val": 1.3
+				}
+			}
+		},
+		"BSilo": {
+			"advancedVals": {
+				"0": {
+					"val": 1.5
+				},
+				"1": {
+					"val": 1.1
+				}
+			}
+		},
+		"BHousePopulation": {
+			"advancedVals": {
+				"0": {
+					"val": 1
+				}
+			}
+		},
+		"BForgeRelics": {
+			"baseVals": {
+				"0": {
+					"val": 0.5
+				}
+			},
+			"advancedVals": {
+				"0": {
+					"val": 0.5
+				}
+			}
+		},
+		"BStagFame2": {
+			"baseVals": {
+				"0": {
+					"val": 100
+				},
+				"1": {
+					"val": 10
+				},
+				"2": {
+					"val": 5
+				}
+			}
+		},
+		"BHeartyLife": {
+			"baseVals": {
+				"0": {
+					"val": 15
+				}
+			}
+		},
+		"BMultipleTowers": {
+			"baseVals": {
+				"1": {
+					"val": 1
+				}
+			},
+			"advancedVals": {
+				"1": {
+					"val": 1
+				}
+			}
+		},
+		"BExplodingTowers": {
+			"baseVals": {
+				"0": {
+					"val": 0.2
+				},
+				"1": {
+					"val": 1
+				}
+			},
+			"advancedVals": {
+				"0": {
+					"val": 0.2
+				},
+				"1": {
+					"val": 1
+				}
+			}
+		}
+	}
+}
