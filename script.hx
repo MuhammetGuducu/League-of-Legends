@@ -1,741 +1,478 @@
-var month = 0;
+var Wave = 0;
 
-function saveState() {
-    state.scriptProps = {
-        month: month,
-    };
-}
+var lastUpdateTime = -1;
 
-var LEVEL_THRESHOLDS = [0, 3000, 9000];
-var JUNGLE_LIMIT = 4; // the amount of jungle creeps that spawn in a camp
+var Stag = getZone(206).owner;
+var Wolf = getZone(121).owner;
+var Goat = getZone(29).owner;
+var Bear = getZone(277).owner;
+var Dragon = getZone(196).owner;
+var Horse = getZone(100).owner;
+
+var StagAttack:Array<Zone> = [getZone(208), getZone(220), getZone(232), getZone(237), getZone(248), getZone(260), getZone(267), getZone(277)];
+var BearAttack:Array<Zone> = [getZone(267), getZone(260), getZone(248), getZone(237), getZone(232), getZone(220), getZone(208), getZone(206)];
+
+var WolfAttack:Array<Zone> = [getZone(130), getZone(135), getZone(147), getZone(155), getZone(169), getZone(178), getZone(185), getZone(196)];
+var DragonAttack:Array<Zone> = [getZone(185), getZone(178), getZone(169), getZone(155), getZone(147), getZone(135), getZone(130), getZone(121)];
+
+var GoatAttack:Array<Zone> = [getZone(43), getZone(51), getZone(62), getZone(64), getZone(73), getZone(84), getZone(93), getZone(100)];
+var HorseAttack:Array<Zone> = [getZone(93), getZone(84), getZone(73), getZone(64), getZone(62), getZone(51), getZone(43), getZone(29)];
+
+
+var StagWave:Array<Unit> = [];
+var WolfWave:Array<Unit> = [];
+var GoatWave:Array<Unit> = [];
+var BearWave:Array<Unit> = [];
+var DragonWave:Array<Unit> = [];
+var HorseWave:Array<Unit> = [];
+
+
+var FoodCamp:Array<Zone> = [getZone(165), getZone(219), getZone(139), getZone(88)];
+var WoodCamp:Array<Zone> = [getZone(212), getZone(132), getZone(94), getZone(171)];
+var KrownsCamp:Array<Zone> = [getZone(184), getZone(106), getZone(124), getZone(202)];
+var OresCamp:Array<Zone> = [getZone(193), getZone(113)];
+var BossCamp:Array<Zone> = [getZone(166), getZone(136)];
+
 var teamOneLevel = 1;
 var teamTwoLevel = 1;
 
-var PLAYER_DATA = [
-    { player: null, team: 1, base: null, path: 0 },
-    { player: null, team: 1, base: null, path: 0 },
-    { player: null, team: 1, base: null, path: 0 },
-    { player: null, team: 2, base: null, path: 0 },
-    { player: null, team: 2, base: null, path: 0 },
-    { player: null, team: 2, base: null, path: 0 }
+var minerUnits = [Unit.DwarfChampion, Unit.HorseMaiden, Unit.HippogriffHero];
+var minerBonuses1 = [ConquestBonus.BForgeRelics, ConquestBonus.BColonizeCost, ConquestBonus.BHousePopulation];
+var minerBonuses2 = [ConquestBonus.BWinter, ConquestBonus.BSilo, ConquestBonus.BPopGrowth];
+var minerMessages = [
+    "[MINER Lv.1]: [DwarfChampion]. Slow miner and smith.\n-50% [Relic] cost and time and -30% Winter Severity",
+    "[MINER Lv.2]: [HorseMaiden]. Moderate miner and smith, can fight outside your territory.\n-30% Colonze Cost + 20% Silo bonus",
+    "[MINER Lv.3]: [HippogriffHero]. Fast miner and smith, can fight and mine outside your territory.\n+2 House space + 60% [Population] Growth"
 ];
 
-var HERO_PATHS = [
-    {
-        name: "Miners",
-        levels: [Unit.DwarfChampion, Unit.HorseMaiden, Unit.HippogriffHero],
-        techs: [null, null, null],
-        bonus: [
-            {id: ConquestBonus.BForgeRelics, isAdvanced: true},
-            null,
-            null
-        ],
-        messages: [
-            "[HERO Lv.1]: Dwarven Operative. Slow miner and smith. -50% Relic cost and time", // path 1
-            "[HERO Lv.2]: Eitria. Moderate miner and smith, can fight outside your territory.", // path 2
-            "[HERO Lv.3]: Sindri. Fast miner and smith, can fight and mine outside your territory.", // path 3
-        ]
-    },
-    {
-        name: "Fighters",
-        levels: [Unit.Berserker, Unit.Berserker03, Unit.EagleHero],
-        techs: [null, Tech.GotBerserk, null],
-        bonus: [
-            {id: ConquestBonus.BOffensiveCivilian, isAdvanced: true},
-            {id: ConquestBonus.BWarband, isAdvanced: true},
-            {id: ConquestBonus.BGlacialWinds, isAdvanced: true}
-        ],
-        messages: [
-            "[HERO Lv.1]: Berserker. High damage, low defense. Civilians can enter neutral zones", // path 4
-            "[HERO Lv.2]: Egil. Gains Dominion ability to colonize zones for free. +5 Warband", // path 5
-            "[HERO Lv.3]: Grif. Swift assassin, can freeze zones for 30 seconds.", // path 6
-        ]
-    },
-    {
-        name: "Defender",
-        levels: [Unit.BearMaiden, Unit.TurtleHero, Unit.RatMaiden],
-        techs: [null, null, null],
-        bonus: [
-            {id: ConquestBonus.BWinter, isAdvanced: true},
-            null,
-            {id: ConquestBonus.BHousePopulation, isAdvanced: true}
-        ],
-        messages: [
-            "[HERO Lv.1]: Kaija. Slow tank, fishes for food, regenerates health. -25% Winter severity", // path 7
-            "[HERO Lv.2]: Njörd. Durable tank, reduces upgrade and purchase costs.", // path 8
-            "[HERO Lv.3]: Eir. Strong tank, heals all allies in her zone. +1 House space", // path 9
-        ]
-    }
+var attackerUnits = [Unit.Berserker, Unit.Berserker03, Unit.EagleHero];
+var attackerBonuses1 = [ConquestBonus.BUnitFree, ConquestBonus.BNiflheimVampirism, ConquestBonus.BNidavellirDoTUnit];
+var attackerBonuses2 = [ConquestBonus.BWarband, ConquestBonus.BWarchiefCooldown, ConquestBonus.BVanaheimRootUnit];
+var attackerMessages = [
+    "[FIGHTER Lv.1]: [Berserker]. High damage, low defense.\n3 Free Units + 3 Free [Warband]",
+    "[FIGHTER Lv.2]: [Berserker03]. Bigger brother of the Berserker.\nUnits gain Lifesteal + 50% Warchief Cooldown Reduction",
+    "[FIGHTER Lv.3]: [EagleHero]. Swift assassin with ranged attacks.\nPoison Blades + Snaring Blades"
 ];
 
-// =============================================================================
-
-var CAMPS = [
-    {
-        name: "Food",
-        levels: [Unit.SpecterWarrior, Unit.IdavollValkyrie, Unit.IceGolem],
-        location: [
-            { zone: 153 },
-            { zone: 230 },
-            { zone: 148 },
-            { zone: 79 },
-        ],
-    },
-    {
-        name: "Wood",
-        levels: [Unit.Lightalfar, Unit.DwarfChampion, Unit.Valkyrie],
-        location: [
-            { zone: 165 },
-            { zone: 219 },
-            { zone: 139 },
-            { zone: 88 },
-        ],
-    },
-    {
-        name: "Krowns",
-        levels: [Unit.Myrkalfar, Unit.DwarfKingFoe, Unit.UndeadGiant],
-        location: [
-            { zone: 171 },
-            { zone: 212 },
-            { zone: 132 },
-            { zone: 94 },
-        ],
-    },
-    {
-        name: "Ores",
-        levels: [null, Unit.SmallGolem, Unit.RimesteelGolem],
-        location: [
-            { zone: 184 },
-            { zone: 202 },
-            { zone: 124 },
-            { zone: 106 },
-        ],
-    }
+var defenderUnits = [Unit.BearMaiden, Unit.TurtleHero, Unit.RatMaiden];
+var defenderBonuses1 = [ConquestBonus.BRuinsExploration, ConquestBonus.BTowerMultiShot, ConquestBonus.BMultipleTowers];
+var defenderBonuses2 = [ConquestBonus.BColonizeCost, ConquestBonus.BExplodingTowers, ConquestBonus.BTowerMultiTarget];
+var defenderMessages = [
+    "[DEFENDER Lv.1]: [BearMaiden]. Slow tank, fishes for food, regenerates health.\n-30% Colonize Cost + Ruins yield 2x resources",
+    "[DEFENDER Lv.2]: [TurtleHero]. Durable tank, reduces upgrade and purchase costs.\nTowers shoot two arrows + Exploding Towers",
+    "[DEFENDER Lv.3]: [RatMaiden]. Strong tank, heals all allies in the zone.\nBuild two towers per zone + Towers target 3 enemies"
 ];
 
-var LANE_DATA = [
-    {
-        name: "Top",
-        zones: [29, 43, 51, 62, 64, 73, 84, 93, 100],
-    },
-    {
-        name: "Mid",
-        zones: [121, 130, 135, 147, 155, 169, 178, 185, 196],
-    },
-    {
-        name: "Bot",
-        zones: [206, 208, 220, 232, 237, 248, 260, 267, 277],
-    }
-];
-
-var BOSS_DATA = [
-    // Level 1
-    {
-        name: "Savage Jötunn",
-        unit: Unit.Giant,
-        escorts: [],
-        escortCount: 0,
-        level: 1,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.1]: Savage Jötunn. Hits hard, weak to projectiles. Kill reward: \n",
-    },
-    {
-        name: "Vanr",
-        unit: Unit.Vanir,
-        escorts: [Unit.Lightalfar],
-        escortCount: 4,
-        level: 1,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.1]: Vanr with 4 Ljósálf. Low stats but deadly poison. Kill reward: \n",
-    },
-    {
-        name: "Colossal Boar",
-        unit: Unit.ColossalBoar,
-        escorts: [],
-        escortCount: 0,
-        level: 1,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.1]: Colossal Boar. Regenerates health quickly. Kill reward: \n",
-
-    },
-    // Level 2
-    {
-        name: "Jötunn Champion",
-        unit: Unit.GiantHero,
-        escorts: [Unit.IdavollValkyrie],
-        escortCount: 4,
-        level: 2,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.2]: Jötunn Champion with 4 True Valkyries. Kill reward: \n",
-    },
-    {
-        name: "Rock Golem",
-        unit: Unit.Golem,
-        escorts: [],
-        escortCount: 0,
-        level: 2,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.2]: Rock Golem. Burns enemies with molten lava. Kill reward: \n",
-    },
-    {
-        name: "Iron Golem",
-        unit: Unit.IronGolem,
-        escorts: [],
-        escortCount: 0,
-        level: 2,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.2]: Iron Golem. Metal core makes it very resistant. Kill reward: \n",
-    },
-    // Level 3
-    {
-        name: "Valdemar",
-        unit: Unit.LichKing,
-        escorts: [],
-        escortCount: 0,
-        level: 3,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.3]: Valdemar the Cursed with 6 Ice Golems. Kill reward: \n",
-    },
-    {
-        name: "Erlking",
-        unit: Unit.Dracula,
-        escorts: [Unit.Death],
-        escortCount: 6,
-        level: 3,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.3]: The Erlking with 6 Servants. Kill reward: \n",
-    },
-    {
-        name: "Young Wyvern",
-        unit: Unit.BabyWyvern,
-        escorts: [],
-        escortCount: 0,
-        level: 3,
-        loreBonus: [],
-		conquestBonus: [],
-		alive: false,
-		message: "[BOSS Lv.3]: Young Wyvern. Fast and aggressive, don't underestimate the area damage. Kill reward: \n",
-    }
-];
-
-var BOSS_ZONES = [113, 193];
-
-
-// =============================================================================
-
-var CONQUEST_REWARDS = [
-    // Level 1
-    { level: 1, bonus: [{id: ConquestBonus.BUnitFree, isAdvanced: true}], taken: false },
-    { level: 1, bonus: [{id: ConquestBonus.BMoreSheeps, isAdvanced: true}], taken: false },
-    { level: 1, bonus: [{id: ConquestBonus.BColonizeCost, isAdvanced: true}], taken: false },
-    { level: 1, bonus: [{id: ConquestBonus.BFarColonize, isAdvanced: true}], taken: false },
-    { level: 1, bonus: [{id: ConquestBonus.BFeast, isAdvanced: true}], taken: false },
-    { level: 1, bonus: [{id: ConquestBonus.BNiflheimVampirism, isAdvanced: true}], taken: false },
-
-    // Level 2
-    { level: 2, bonus: [{id: ConquestBonus.BNiflheimBarricades, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BNiflheimTowers, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BMuspelheimAoEUnits, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BMuspelheimTowers, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BPopGrowth, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BHappyBonus, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BAltar, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BStagFame2, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BSiloImproved, isAdvanced: true}], taken: false },
-    { level: 2, bonus: [{id: ConquestBonus.BSilo, isAdvanced: true}], taken: false },
-
-    // Level 3
-    { level: 3, bonus: [{id: ConquestBonus.BIdavollThunderTower, isAdvanced: true}], taken: false },
-    { level: 3, bonus: [{id: ConquestBonus.BIdavollThunderBarricades, isAdvanced: true}], taken: false },
-    { level: 3, bonus: [{id: ConquestBonus.BUnlimitedRelics, isAdvanced: true}], taken: false },
-    { level: 3, bonus: [{id: ConquestBonus.BHeartyLife, isAdvanced: true}], taken: false },
-    { level: 3, bonus: [{id: ConquestBonus.BExplodingTowers, isAdvanced: true}], taken: false },
-    { level: 3, bonus: [{id: ConquestBonus.BMultipleTowers, isAdvanced: true}], taken: false },
-];
-
-var LORE_REWARDS = [
-    // Level 1
-    { level: 1, tech: Tech.ChainTasks, taken: false },
-    // Level 2
-    { level: 2, tech: Tech.FeastResist, taken: false },
-    { level: 2, tech: Tech.Dedication, taken: false },
-    // Level 3
-    { level: 3, tech: Tech.StolenLore, taken: false },
-    { level: 3, tech: Tech.MilitaryWolf, taken: false },
-    { level: 3, tech: Tech.BearAwake, taken: false },
-];
-
-// =============================================================================
-
-function init() {
-    if (state.time == 0)
-        onFirstLaunch();
-    onEachLaunch();
+function init () {
+	if (isHost()) {
+		for (player in state.players) {
+			if (player.isAI) {
+				player.addBonus({ id: ConquestBonus.BCaCTowers, isAdvanced: false });
+				player.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: true });
+				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Food, isAdvanced: true });
+				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Wood, isAdvanced: false });
+				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Money, isAdvanced: false });
+				player.addBonus({ id: ConquestBonus.BMineral, resId:Resource.Stone, isAdvanced: false });
+				player.setAILevel(5);
+				player.addResource(Resource.Gemstone, 40);
+			} else {
+				player.addBonus({ id: ConquestBonus.BCaCTowers, isAdvanced: false });
+			}
+		}
+		state.difficulty = 3;
+		state.removeVictory(Victory.Fame);
+		state.removeVictory(Victory.Lore);
+		state.removeVictory(Victory.Money);
+		state.removeVictory(Victory.Outsiders);
+		state.removeVictory(Victory.Yggdrasil);
+		state.removeVictory(Victory.OdinSword);
+		state.removeVictory(Victory.Helheim);
+		state.removeVictory(Victory.MealSquirrel);
+		state.removeVictory(Victory.OwlTitanVic);
+		addRule(Rule.NoMaxTerritoryExpand);
+		addRule(Rule.AggressiveIA);
+		addRule(Rule.ManyResources);
+		addRule(Rule.IANeedColonize);
+		addRule(Rule.NeedDefense);
+		addRule(Rule.AggressiveMyrkalfar);
+		addRule(Rule.CantCloseAnimalDens);
+	}
 }
 
-function onFirstLaunch() {
-    if (isHost()) {
-        setupPlayers();
-        setupObjectives();
-        setupRules();
-    }
+
+@sync function refreshOwners() {
+	Stag = getZone(206).owner;
+	Wolf = getZone(121).owner;
+	Goat = getZone(29).owner;
+	Bear = getZone(277).owner;
+	Dragon = getZone(196).owner;
+	Horse = getZone(100).owner;
 }
 
-function onEachLaunch() {
-}
 
 function regularUpdate(dt: Float) {
-    if (isHost()) {
-        // Monthly
-        if (math.floor((state.time / 60)) > month) {
-            month++;
-            aiCheat();
+	if (!isHost()) return;
 
-            // Every 2 months (when month is even)
-            if (month % 2 == 0) {
-                spawnLaneCreeps();
-                spawnJungleCamps();
+	var currentTime = math.floor(state.time);
+
+	if (currentTime == lastUpdateTime) return;
+	lastUpdateTime = currentTime;
+
+	var mod15 = currentTime % 15;
+	var mod61 = currentTime % 61;
+	var mod180 = currentTime % 180;
+	var mod720 = currentTime % 720;
+
+	@split[
+		refreshOwners(),
+
+		if (mod15 == 0) doWaveMovement(),
+
+		if (mod61 == 5) doProgression(),
+
+		if (mod180 == 93) spawnMonster(FoodCamp, 1),
+		if (mod180 == 113) spawnMonster(WoodCamp, 2),
+		if (mod180 == 133) spawnMonster(KrownsCamp, 3),
+		if (mod180 == 153) spawnMonster(OresCamp, 4),
+
+		if (mod180 == 3) doWaveSpawning(),
+
+		if (mod720 == 7) spawnBoss(BossCamp),
+	];
+	if (mod15 == 1) pathCheck();
+}
+
+
+@sync function doWaveMovement() {
+	StagWave = cleanWaveArray(StagWave);
+	BearWave = cleanWaveArray(BearWave);
+	WolfWave = cleanWaveArray(WolfWave);
+	DragonWave = cleanWaveArray(DragonWave);
+	GoatWave = cleanWaveArray(GoatWave);
+	HorseWave = cleanWaveArray(HorseWave);
+
+	@split[
+		sendWave(StagWave, StagAttack, Stag),
+		sendWave(BearWave, BearAttack, Bear),
+		sendWave(WolfWave, WolfAttack, Wolf),
+		sendWave(DragonWave, DragonAttack, Dragon),
+		sendWave(GoatWave, GoatAttack, Goat),
+		sendWave(HorseWave, HorseAttack, Horse),
+	];
+}
+
+
+@sync function doProgression() {
+	var teamOneXP = 0.0;
+	var teamTwoXP = 0.0;
+
+	if (Stag != null) teamOneXP += Stag.getResource(Resource.MilitaryXP);
+	if (Wolf != null) teamOneXP += Wolf.getResource(Resource.MilitaryXP);
+	if (Goat != null) teamOneXP += Goat.getResource(Resource.MilitaryXP);
+
+	if (Bear != null) teamTwoXP += Bear.getResource(Resource.MilitaryXP);
+	if (Dragon != null) teamTwoXP += Dragon.getResource(Resource.MilitaryXP);
+	if (Horse != null) teamTwoXP += Horse.getResource(Resource.MilitaryXP);
+
+	if (teamOneXP > 4000) {
+		teamOneLevel = teamOneXP > 10000 ? 3 : 2;
+	}
+	if (teamTwoXP > 4000) {
+		teamTwoLevel = teamTwoXP > 10000 ? 3 : 2;
+	}
+
+	var level = math.max(teamOneLevel, teamTwoLevel);
+
+	for (p in state.players) {
+		if (p == null) continue;
+
+		if (p.getResource(Resource.RimeSteel) > 0) {
+			p.setResource(Resource.RimeSteel, 0);
+
+
+
+			var isTeam1 = (p.clan == Clan.Wolf || p.clan == Clan.Stag || p.clan == Clan.Goat);
+			var team = isTeam1 ? [Wolf, Stag, Goat] : [Horse, Dragon, Bear];
+
+			for (member in team) {
+				if (member == null) continue;
+
+				member.addResource(Resource.Gemstone, level);
+				member.addResource(Resource.Fame, level*50);
+				member.addResource(Resource.Lore, level*200);
+				member.genericNotify("Your team killed the Boss! You gain " + level*200 + " [Lore], " + level*50 + " [Fame], " + level + " [Gemstone]");
+			}
+			return;
+		}
+	}
+}
+
+@sync function pathCheck() {
+    for (p in state.players) {
+        if (p == null) continue;
+
+        var zone = p.getBuilding(Building.TownHall).zone;
+        if (zone == null) continue;
+
+        var isTeam1 = (p.clan == Clan.Stag || p.clan == Clan.Wolf || p.clan == Clan.Goat);
+        var teamLevel = isTeam1 ? teamOneLevel : teamTwoLevel;
+
+        if (teamLevel < 1 || teamLevel > 3) continue;
+
+        if (p.hasTech(Tech.Lumber) && !p.hasBonus(attackerBonuses1[0]) && !p.hasBonus(minerBonuses1[0])) {
+            if (!p.hasBonus(defenderBonuses1[teamLevel - 1])) {
+                p.addBonus({ id: defenderBonuses1[teamLevel - 1], isAdvanced: false });
+                p.addBonus({ id: defenderBonuses2[teamLevel - 1], isAdvanced: false });
+                zone.addUnit(defenderUnits[teamLevel - 1], 1, p);
+                p.genericNotify(defenderMessages[teamLevel - 1]);
             }
+            continue;
+        }
 
-            // Boss spawning (every 12 months)
-            if (month % 12 == 0) {
-                spawnBoss();
+        if ((p.hasTech(Tech.Weaponsmith) || p.hasTech(Tech.Frenzy)) && !p.hasBonus(defenderBonuses1[0]) && !p.hasBonus(minerBonuses1[0])) {
+            if (!p.hasBonus(attackerBonuses1[teamLevel - 1])) {
+                p.addBonus({ id: attackerBonuses1[teamLevel - 1], isAdvanced: false });
+                p.addBonus({ id: attackerBonuses2[teamLevel - 1], isAdvanced: false });
+                zone.addUnit(attackerUnits[teamLevel - 1], 1, p);
+                p.genericNotify(attackerMessages[teamLevel - 1]);
             }
+            continue;
         }
 
-        // every tick (0.5s)
-        trackTeamXP();
-        pathUpgrades();
-        checkVictoryConditions();
-    }
-}
-
-// =============================================================================
-
-function setupPlayers() {
-	// Team 1
-    PLAYER_DATA[0].player = getZone(206).owner;
-    PLAYER_DATA[0].base = getZone(206);
-    PLAYER_DATA[1].player = getZone(121).owner;
-    PLAYER_DATA[1].base = getZone(121);
-    PLAYER_DATA[2].player = getZone(29).owner;
-    PLAYER_DATA[2].base = getZone(29);
-    setAlly(PLAYER_DATA[1].player, PLAYER_DATA[0].player);
-    setAlly(PLAYER_DATA[2].player, PLAYER_DATA[0].player);
-
-	// Team 2
-    PLAYER_DATA[3].player = getZone(277).owner;
-    PLAYER_DATA[3].base = getZone(277);
-    PLAYER_DATA[4].player = getZone(196).owner;
-    PLAYER_DATA[4].base = getZone(196);
-    PLAYER_DATA[5].player = getZone(100).owner;
-    PLAYER_DATA[5].base = getZone(100);
-	setAlly(PLAYER_DATA[4].player, PLAYER_DATA[3].player);
-    setAlly(PLAYER_DATA[5].player, PLAYER_DATA[3].player);
-
-}
-
-function setupObjectives() {
-	@sync for (p in PLAYER_DATA) {
-		if (!p.player.isAI) {
-			p.player.objectives.add("waveTimer", "Minions and Jungle respawn in:", {visible:true, showProgressBar: true, showOtherPlayers: false, val:0.0, goalVal:120});
-			p.player.objectives.add("botBoss", "Botlane Boss respawns in:", {visible:true, showProgressBar: true, showOtherPlayers: false, val:0.0, goalVal:720});
-			p.player.objectives.add("topBoss", "Toplane Boss respawns in:", {visible:true, showProgressBar: true, showOtherPlayers: false, val:0.0, goalVal:720});
-		}
-	}
-}
-
-function setupRules() {
-    state.removeVictory(Victory.Fame);
-    state.removeVictory(Victory.Money);
-    state.removeVictory(Victory.Lore);
-    state.removeVictory(Victory.Outsiders);
-    state.removeVictory(Victory.Yggdrasil);
-    state.removeVictory(Victory.OdinSword);
-    state.removeVictory(Victory.Helheim);
-
-	addRule(Rule.NoMaxTerritoryExpand);
-	addRule(Rule.AggressiveIA);
-	addRule(Rule.ManyResources);
-	addRule(Rule.IANeedColonize);
-	addRule(Rule.NeedDefense);
-	for (p in PLAYER_DATA) {
-
-		// Starter AI Buffs (AI will get more buffs as game goes on)
-		if (p.player.isAI) {
-			p.player.setAILevel(5);
-			p.player.addBonus({id:ConquestBonus.BMultipleTowers, isAdvanced:true});
-			p.player.addBonus({id:ConquestBonus.BResBonus, resId:Resource.Food, isAdvanced:false});
-			p.player.addBonus({id:ConquestBonus.BResBonus, resId:Resource.Wood, isAdvanced:false});
-			p.player.addBonus({id:ConquestBonus.BResBonus, resId:Resource.Money, isAdvanced:false});
-			p.player.addBonus({id:ConquestBonus.BResBonus, resId:Resource.Lore, isAdvanced:false});
-		}
-
-		// Forbid colonize of jungle
-		for (camp in CAMPS) {
-			for (loc in camp.location) {
-				p.player.allowColonize(getZone(loc.zone), false);
-			}
-		}
-		for (zone in BOSS_ZONES) {
-			p.player.allowColonize(getZone(zone), false);
-		}
-	}
-}
-
-function aiCheat() {
-	for (p in PLAYER_DATA) {
-		if (p.player.isAI) {
-			p.player.setAILevel(math.floor((month/12)+5));
-			p.player.addResource(Resource.MilitaryXP, math.floor(month));
-			p.player.addResource(Resource.Gemstone, math.floor(0.75 + (month/24)));
-			if (p.player.getResource(Resource.Food) < 300) {
-				p.player.addResource(Resource.Food, math.floor(300 + month*5));
-			}
-			if (p.player.getResource(Resource.Wood) < month*15) {
-				p.player.addResource(Resource.Wood, math.floor(month*10));
-			}
-			if (p.player.getResource(Resource.Money) < month*15) {
-				p.player.addResource(Resource.Money, math.floor(month*10));
-			}
-
-			// Villager Buff for Kingdom Clans
-			if (p.player.clan == Clan.Carolingians || p.player.clan == Clan.Stoat || p.player.clan == Clan.Hippogriff) {
-				if (p.player.getUnits(Unit.Peon).length < math.floor(month/4)) {
-					p.base.addUnit(Unit.Peon, 1, p.player);
-				}
-				if (p.player.getMilitaryCount(null, true) < math.floor(month/6)) {
-					p.base.addUnit(Unit.Warrior02, 1, p.player);
-				}
-
-			// Villager Buff for Viking Clans
-			} else {
-				if (p.player.getUnits(Unit.Villager).length < math.floor(month/4)) {
-					p.base.addUnit(Unit.Villager, 1, p.player);
-				}
-				if (p.player.getMilitaryCount(null, true) < math.floor(month/6)) {
-					p.base.addUnit(Unit.Warrior, 1, p.player);
-				}
-			}
-		}
-	}
-}
-
-
-// =============================================================================
-
-function pathUpgrades() {
-    @sync for (p in PLAYER_DATA) {
-        if (p.player == null) continue;
-
-        switch (p.path) {
-            // No path yet
-            case 0:
-                p.path = checkPathSelection(p);
-
-            // ===== MINER PATH =====
-            case 1:
-                if (canUpgradeToLevel(p, 2)) {
-                    p.base.addUnit(HERO_PATHS[0].levels[1], 1, p.player);
-                    p.player.genericNotify(HERO_PATHS[0].messages[1]);
-                    p.path = 2;
-                }
-
-            case 2:
-                if (canUpgradeToLevel(p, 3)) {
-                    p.base.addUnit(HERO_PATHS[0].levels[2], 1, p.player);
-                    p.player.genericNotify(HERO_PATHS[0].messages[2]);
-                    p.path = 3;
-                }
-
-            case 3:
-                // Miner maxed
-
-            // ===== FIGHTER PATH =====
-            case 4:
-                if (canUpgradeToLevel(p, 2)) {
-                    p.base.addUnit(HERO_PATHS[1].levels[1], 1, p.player);
-                    p.player.unlockTech(HERO_PATHS[1].techs[1]);
-                    p.player.addBonus(HERO_PATHS[1].bonus[1]);
-                    p.player.genericNotify(HERO_PATHS[1].messages[1]);
-                    p.path = 5;
-                }
-
-            case 5:
-                if (canUpgradeToLevel(p, 3)) {
-                    p.base.addUnit(HERO_PATHS[1].levels[2], 1, p.player);
-                    p.player.addBonus(HERO_PATHS[1].bonus[2]);
-                    p.player.genericNotify(HERO_PATHS[1].messages[2]);
-                    p.path = 6;
-                }
-
-            case 6:
-                // Fighter maxed
-
-            // ===== DEFENDER PATH =====
-            case 7:
-                if (canUpgradeToLevel(p, 2)) {
-                    p.base.addUnit(HERO_PATHS[2].levels[1], 1, p.player);
-                    p.player.genericNotify(HERO_PATHS[2].messages[1]);
-                    p.path = 8;
-                }
-
-            case 8:
-                if (canUpgradeToLevel(p, 3)) {
-                    p.base.addUnit(HERO_PATHS[2].levels[2], 1, p.player);
-                    p.player.addBonus(HERO_PATHS[2].bonus[2]);
-                    p.player.genericNotify(HERO_PATHS[2].messages[2]);
-                    p.path = 9;
-                }
-
-            case 9:
-                // Defender maxed
+        if ((p.hasTech(Tech.Mining) || p.hasTech(Tech.Excavation) || p.hasTech(Tech.GreatDeeds) || p.hasTech(Tech.WinterFestival)) && !p.hasBonus(defenderBonuses1[0]) && !p.hasBonus(attackerBonuses1[0])) {
+            if (!p.hasBonus(minerBonuses1[teamLevel - 1])) {
+                p.addBonus({ id: minerBonuses1[teamLevel - 1], isAdvanced: false });
+                p.addBonus({ id: minerBonuses2[teamLevel - 1], isAdvanced: false });
+                zone.addUnit(minerUnits[teamLevel - 1], 1, p);
+                p.genericNotify(minerMessages[teamLevel - 1]);
+            }
+            continue;
         }
     }
 }
 
 
-function checkPathSelection(p) {
-    // Check if player built a forge or mine building
-    if (p.player.getBuilding(Building.Forge) != null ||
-        p.player.getBuilding(Building.ForgeHorse) != null ||
-        p.player.getBuilding(Building.AllMines) != null ||
-        p.player.getBuilding(Building.QuarryStone) != null ||
-        p.player.getBuilding(Building.Smithy) != null ||
-        p.player.getBuilding(Building.HippogriffForge) != null) {
+@sync function doWaveSpawning() {
+	Wave++;
+	sfx(UiSfx.Horn);
 
-        var pathTaken = [for (player in PLAYER_DATA) if (player.path == 1 && player.team == p.team) player].length > 0;
-
-        if (!pathTaken) {
-            p.base.addUnit(HERO_PATHS[0].levels[0], 1, p.player);  // Dwarven Operative
-            p.player.addBonus(HERO_PATHS[0].bonus[0]);
-            p.player.genericNotify(HERO_PATHS[0].messages[0]);
-            return 1;
-        }
-    }
-
-    // Check if player built a warcamp
-    if (p.player.getResource(Resource.Warband) > 0) {
-        var pathTaken = [for (player in PLAYER_DATA) if (player.path == 4 && player.team == p.team) player].length > 0;
-
-        if (!pathTaken) {
-            p.base.addUnit(HERO_PATHS[1].levels[0], 1, p.player);  // Berserker
-            p.player.addBonus(HERO_PATHS[1].bonus[0]);
-            p.player.genericNotify(HERO_PATHS[1].messages[0]);
-            return 4;
-        }
-    }
-
-    // Check if player built a money building
-    if (p.player.getBuilding(Building.TradingPost) != null ||
-        p.player.getBuilding(Building.MarketPlace) != null ||
-        p.player.getBuilding(Building.Port) != null ||
-        p.player.getBuilding(Building.RavenPort) != null ||
-        p.player.getBuilding(Building.KrownPicker) != null ||
-        p.player.getBuilding(Building.CaroPort) != null) {
-
-        var pathTaken = [for (player in PLAYER_DATA) if (player.path == 7 && player.team == p.team) player].length > 0;
-
-        if (!pathTaken) {
-            p.base.addUnit(HERO_PATHS[2].levels[0], 1, p.player);  // Kaija
-            p.player.addBonus(HERO_PATHS[2].bonus[0]);
-            p.player.genericNotify(HERO_PATHS[2].messages[0]);
-            return 7;
-        }
-    }
-
-	return 0;  // No path selected
-
-}
-
-
-function trackTeamXP() {
-    var teamOneXP = 0;
-    var teamTwoXP = 0;
-    for (p in PLAYER_DATA) {
-        if (p.team == 1) {
-            teamOneXP = teamOneXP + math.floor(p.player.getResource(Resource.MilitaryXP));
-        } else {
-            teamTwoXP = teamTwoXP + math.floor(p.player.getResource(Resource.MilitaryXP));
-        }
-    }
-    if (teamOneXP >= LEVEL_THRESHOLDS[2]) {
-        teamOneLevel = 3;
-    } else if (teamOneXP >= LEVEL_THRESHOLDS[1]) {
-        teamOneLevel = 2;
-    }
-    if (teamTwoXP >= LEVEL_THRESHOLDS[2]) {
-        teamTwoLevel = 3;
-    } else if (teamTwoXP >= LEVEL_THRESHOLDS[1]) {
-        teamTwoLevel = 2;
-    }
-}
-
-
-// =============================================================================
-
-function spawnJungleCamps() {
-	var tier = math.floor(math.max(teamOneLevel, teamTwoLevel) - 1);
-
-	// safety checks
-	if (tier < 0) tier = 0;
-    if (tier > 2) tier = 2;
-
-	@sync for (camp in CAMPS) {
-		var unitType = camp.levels[(tier)];
-		if (unitType == null) continue;
-
-		for (loc in camp.location) {
-			var z = getZone(loc.zone);
-			if (z != null) {
-				// Check if camp is already full
-				var countFoes = 0;
-				for (unit in z.units) {
-					if (unit.owner == null) {
-						countFoes++;
+	var toKill = [];
+	for (p in state.players) {
+		if (p == null) continue;
+		var mercs = p.getUnits(Unit.Mercenary);
+		if (mercs != null) {
+			for (unit in mercs) {
+				if (unit != null) {
+					var unitZone = unit.zone;
+					if (unit.life <= 0.0 || unitZone == null || unitZone.owner == null || unitZone.owner == unit.owner) {
+						toKill.push(unit);
 					}
 				}
-				// Camp is not full, add one jungle monster
-				if (countFoes <= 3) {
-					z.addUnit(unitType, 1, null);
+			}
+		}
+	}
+	for (unit in toKill) {
+		if (unit != null) {
+			unit.die(true);
+		}
+	}
+
+	// Only spawn waves if BOTH players in a lane are alive (non-null).
+	if (Stag != null && Bear != null && getZone(206).owner == Stag && getZone(277).owner == Bear) {
+		StagWave = spawnWave(206, Stag);
+		BearWave = spawnWave(277, Bear);
+	} else {
+		StagWave = [];
+		BearWave = [];
+	}
+
+	if (Wolf != null && Dragon != null && getZone(121).owner == Wolf && getZone(196).owner == Dragon) {
+		WolfWave = spawnWave(121, Wolf);
+		DragonWave = spawnWave(196, Dragon);
+	} else {
+		WolfWave = [];
+		DragonWave = [];
+	}
+
+	if (Goat != null && Horse != null && getZone(29).owner == Goat && getZone(100).owner == Horse) {
+		GoatWave = spawnWave(29, Goat);
+		HorseWave = spawnWave(100, Horse);
+	} else {
+		GoatWave = [];
+		HorseWave = [];
+	}
+}
+
+
+@sync function cleanWaveArray(wave:Array<Unit>):Array<Unit> {
+	if (wave == null || wave.length == 0) return [];
+
+	var cleanedWave = [];
+	for (unit in wave) {
+		if (unit != null && unit.life > 0.0) {
+			cleanedWave.push(unit);
+		}
+	}
+
+	if (cleanedWave.length > 20) {
+		for (i in 20...cleanedWave.length) {
+			if (cleanedWave[i] != null) {
+				cleanedWave[i].die(true);
+			}
+		}
+		cleanedWave = cleanedWave.slice(0, 20);
+	}
+
+	return cleanedWave;
+}
+
+
+@sync function sendWave(wave:Array<Unit>, attackPath:Array<Zone>, owner):Void {
+	if (wave == null || wave.length == 0 || owner == null || attackPath == null) {
+		return;
+	}
+
+	var startIndex = -1;
+	for (i in 0...attackPath.length) {
+		if (attackPath[i].owner != owner && attackPath[i].owner != null) {
+			startIndex = i;
+			break;
+		}
+	}
+
+	if (startIndex == -1) {
+		launchAttack(wave, [attackPath[attackPath.length - 1].id]);
+		return;
+	}
+
+	var path = [];
+	for (i in startIndex...attackPath.length) {
+		path.push(attackPath[i].id);
+	}
+
+	launchAttack(wave, path);
+}
+
+
+@sync function spawnWave(z:Int<Zone>, p:Player):Array<Unit> {
+	if (p == null) return [];
+
+	var TempArray = [];
+	var unitCount = 0;
+
+	if (Wave % 3 != 0) {
+		unitCount = math.floor(math.max(teamOneLevel, teamTwoLevel));
+		TempArray = getZone(z).addUnit(Unit.Mercenary, unitCount, p);
+		p.genericNotify("[Wave "+ Wave + "]: " + unitCount + "x Minions have spawned!");
+	} else {
+		unitCount = math.floor(math.max(teamOneLevel, teamTwoLevel)*2);
+		TempArray = getZone(z).addUnit(Unit.Mercenary, unitCount, p);
+		p.genericNotify("[MEGA WAVE "+ Wave + "]: " + unitCount + "x Minions have spawned!");
+		shakeCamera(false);
+	}
+
+	if (TempArray != null) {
+		for (unit in TempArray) {
+			if (unit != null) {
+				unit.setUnitFlag(UnitFlag.DisableControl);
+			}
+		}
+	}
+
+	return TempArray;
+}
+
+
+@sync function spawnMonster(camps:Array<Zone>, type : Int) {
+	var level = math.max(teamOneLevel, teamTwoLevel);
+
+	for (zone in camps) {
+		if (zone == null) continue;
+
+		var counter = 0;
+		var units = zone.units;
+		if (units == null) continue;
+
+		for (unit in units) {
+			if (unit != null && unit.owner == null) {
+				counter++;
+			}
+		}
+
+		if (counter >= 3) continue;
+
+		if (level == 1) {
+			if (type == 1) zone.addUnit(Unit.SpecterWarrior, 1, null);
+			else if (type == 2) zone.addUnit(Unit.Lightalfar, 1, null);
+			else if (type == 3) zone.addUnit(Unit.DwarfFoe, 1, null);
+		} else if (level == 2) {
+			if (type == 1) zone.addUnit(Unit.IdavollValkyrie, 1, null);
+			else if (type == 2) zone.addUnit(Unit.DwarfChampionFoe, 1, null);
+			else if (type == 3) zone.addUnit(Unit.DwarfKingFoe, 1, null);
+			else if (type == 4) zone.addUnit(Unit.SmallGolem, 1, null);
+		} else {
+			if (type == 1) zone.addUnit(Unit.IceGolem, 1, null);
+			else if (type == 2) zone.addUnit(Unit.Valkyrie, 1, null);
+			else if (type == 3) zone.addUnit(Unit.UndeadGiant, 1, null);
+			else if (type == 4) zone.addUnit(Unit.RimesteelGolem, 1, null);
+		}
+	}
+}
+
+
+@sync function spawnBoss(camps:Array<Zone>) {
+	var level = math.max(teamOneLevel, teamTwoLevel);
+
+	for (zone in camps) {
+		if (zone == null) continue;
+
+		var RandomNum = math.floor(math.random() * 3) + 1;
+
+		var toKill = [];
+		var units = zone.units;
+		if (units != null) {
+			for (unit in units) {
+				if (unit != null && unit.owner == null) {
+					toKill.push(unit);
 				}
 			}
 		}
-	}
-}
-
-function spawnLaneCreeps() {
-
-}
-
-
-// =============================================================================
-
-
-function spawnBoss() {
-	var tier = math.floor(math.max(teamOneLevel, teamTwoLevel));
-
-	for (zone in BOSS_ZONES) {
-		var bossType = chooseBoss(tier);
-		// Kill old boss if alive
-		var z = getZone(zone);
-		for (unit in z.units) {
-			if (unit.owner == null) {
-				unit.die();
+		for (unit in toKill) {
+			if (unit != null) {
+				unit.die(false);
 			}
 		}
 
-		// Spawn new boss
-		z.addUnit((bossType : Dynamic).unit, 1, null);
-		var bossLaneName = (zone == 193) ? "BOT >" : "TOP > ";
-		var bossBonusNames = ((bossType : Dynamic).conquestBonus) ? (bossType : Dynamic).conquestBonus
-		var announceBoss = (bossLaneName + (bossType : Dynamic).message + );
-		sendMessage(announceBoss);
-		if ((bossType : Dynamic).escortCount > 0) {
-			z.addUnit((bossType : Dynamic).escorts, (bossType : Dynamic).escortCount, null);
-		}
-	}
-}
-
-function chooseBoss(targetLevel : Int) {
-	var possibleBosses = [];
-	for (boss in BOSS_DATA) {
-		if (boss.level == targetLevel) {
-			possibleBosses.push(boss);
-		}
-	}
-	var randomIndex = math.floor(math.random() * possibleBosses.length);
-
-	var selectedBoss = possibleBosses[randomIndex];
-	selectedBoss.conquestBonus = [];
-	selectedBoss.loreBonus = [];
-	selectedBoss.alive = false;
-
-	var isConquest = (math.random() < (2/3));
-	var possibleRewards = [];
-	if (isConquest) {
-		for (r in CONQUEST_REWARDS) {
-			if (r.level <= targetLevel && !r.taken) {
-				possibleRewards.push(r);
+		if (level == 1) {
+			if (RandomNum == 1) {
+				zone.addUnit(Unit.Giant, 1, null);
+			} else if (RandomNum == 2) {
+				zone.addUnit(Unit.Vanir, 1, null);
+			} else if (RandomNum == 3) {
+				zone.addUnit(Unit.ColossalBoar, 1, null);
+			}
+		} else if (level == 2) {
+			if (RandomNum == 1) {
+				var bossArray = zone.addUnit(Unit.GiantHero, 1, null);
+				if (bossArray != null && bossArray.length > 0 && bossArray[0] != null) {
+					bossArray[0].owner = null;
+				}
+			} else if (RandomNum == 2) {
+				zone.addUnit(Unit.Golem, 1, null);
+			} else if (RandomNum == 3) {
+				zone.addUnit(Unit.NidavellirIronGolem, 1, null);
+			}
+		} else {
+			if (RandomNum == 1) {
+				var bossArray = zone.addUnit(Unit.LichKing, 1, null);
+				if (bossArray != null && bossArray.length > 0 && bossArray[0] != null) {
+					bossArray[0].owner = null;
+				}
+			} else if (RandomNum == 2) {
+				zone.addUnit(Unit.Dracula, 1, null);
+			} else if (RandomNum == 3) {
+				zone.addUnit(Unit.BabyWyvern, 1, null);
 			}
 		}
-		var bonusesNeeded = 2;
-		while (bonusesNeeded > 0) {
-			var randomIndex = math.floor(math.random() * possibleRewards.length);
-			var reward = possibleRewards[randomIndex];
-			for (b in reward.bonus) {
-				selectedBoss.conquestBonus.push(b);
-			}
-			reward.taken = true;
-			possibleRewards.splice(randomIndex, 1);
-			bonusesNeeded--;
-		}
-	} else {
-		for (r in LORE_REWARDS) {
-			var randomIndex = math.floor(math.random() * possibleRewards.length);
-			var reward = possibleRewards[randomIndex];
-			for (b in reward.bonus) {
-				selectedBoss.loreBonus.push(b);
-			}
-			reward.taken = true;
-		}
-	}
-	return selectedBoss;
-}
-
-
-
-function trackBossDeath(): Int {
-    for (p in PLAYER_DATA) {
-		if (p.player.getResource(Resource.RimeSteel) > 0) {
-			continue;
-			}
-		}
-    return -1;
-}
-
-
-function awardBossReward(team: Int, bossLevel: Int) {
-
-}
-
-function checkVictoryConditions() {
-
-}
-
-
-// =============================================================================
-
-function canUpgradeToLevel(p, level:Int):Bool {
-    if (p.team == 1) {
-        return teamOneLevel >= level;
-    } else {
-        return teamTwoLevel >= level;
-    }
-}
-
-function randomRoll(max: Int): Int {
-    return math.floor(math.random(max));
-}
-
-function sendMessage(message : String)  {
-	@sync for (p in PLAYER_DATA) {
-		p.player.genericNotify(message);
 	}
 }
