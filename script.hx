@@ -1,85 +1,92 @@
 var Wave = 0;
-
 var lastUpdateTime = -1;
+var TeamBool = false;
+var xpCompensation : Null<Bool> = null;
+var Difficulty = 1;
 
-var Stag = getZone(206).owner;
-var Wolf = getZone(121).owner;
-var Goat = getZone(29).owner;
-var Bear = getZone(277).owner;
-var Dragon = getZone(196).owner;
-var Horse = getZone(100).owner;
+var p1 = getZone(206).owner;
+var p2 = getZone(121).owner;
+var p3 = getZone(29).owner;
+var p4 = getZone(277).owner;
+var p5 = getZone(196).owner;
+var p6 = getZone(100).owner;
 
-var StagAttack:Array<Zone> = [getZone(208), getZone(220), getZone(232), getZone(237), getZone(248), getZone(260), getZone(267), getZone(277)];
-var BearAttack:Array<Zone> = [getZone(267), getZone(260), getZone(248), getZone(237), getZone(232), getZone(220), getZone(208), getZone(206)];
+var p1OG = p1;
+var p2OG = p2;
+var p3OG = p3;
+var p4OG = p4;
+var p5OG = p5;
+var p6OG = p6;
 
-var WolfAttack:Array<Zone> = [getZone(130), getZone(135), getZone(147), getZone(155), getZone(169), getZone(178), getZone(185), getZone(196)];
-var DragonAttack:Array<Zone> = [getZone(185), getZone(178), getZone(169), getZone(155), getZone(147), getZone(135), getZone(130), getZone(121)];
+var p1Attack:Array<Zone> = [getZone(208), getZone(220), getZone(232), getZone(237), getZone(248), getZone(260), getZone(267), getZone(277)];
+var p4Attack:Array<Zone> = [getZone(267), getZone(260), getZone(248), getZone(237), getZone(232), getZone(220), getZone(208), getZone(206)];
 
-var GoatAttack:Array<Zone> = [getZone(43), getZone(51), getZone(62), getZone(64), getZone(73), getZone(84), getZone(93), getZone(100)];
-var HorseAttack:Array<Zone> = [getZone(93), getZone(84), getZone(73), getZone(64), getZone(62), getZone(51), getZone(43), getZone(29)];
+var p2Attack:Array<Zone> = [getZone(130), getZone(135), getZone(147), getZone(155), getZone(169), getZone(178), getZone(185), getZone(196)];
+var p5Attack:Array<Zone> = [getZone(185), getZone(178), getZone(169), getZone(155), getZone(147), getZone(135), getZone(130), getZone(121)];
 
+var p3Attack:Array<Zone> = [getZone(43), getZone(51), getZone(62), getZone(64), getZone(73), getZone(84), getZone(93), getZone(100)];
+var p6Attack:Array<Zone> = [getZone(93), getZone(84), getZone(73), getZone(64), getZone(62), getZone(51), getZone(43), getZone(29)];
 
-var StagWave:Array<Unit> = [];
-var WolfWave:Array<Unit> = [];
-var GoatWave:Array<Unit> = [];
-var BearWave:Array<Unit> = [];
-var DragonWave:Array<Unit> = [];
-var HorseWave:Array<Unit> = [];
+var p1Wave:Array<Unit> = [];
+var p2Wave:Array<Unit> = [];
+var p3Wave:Array<Unit> = [];
+var p4Wave:Array<Unit> = [];
+var p5Wave:Array<Unit> = [];
+var p6Wave:Array<Unit> = [];
 
-
-var FoodCamp:Array<Zone> = [getZone(165), getZone(219), getZone(139), getZone(88)];
-var WoodCamp:Array<Zone> = [getZone(212), getZone(132), getZone(94), getZone(171)];
-var KrownsCamp:Array<Zone> = [getZone(184), getZone(106), getZone(124), getZone(202)];
-var OresCamp:Array<Zone> = [getZone(193), getZone(113)];
-var BossCamp:Array<Zone> = [getZone(166), getZone(136)];
+var FoodCamp:Array<Zone> = [getZone(145), getZone(161)];
+var WoodCamp:Array<Zone> = [getZone(131), getZone(172)];
+var KrownsCamp:Array<Zone> = [getZone(231), getZone(76)];
+var OresCamp:Array<Zone> = [getZone(214), getZone(91)];
+var BossCamp:Array<Zone> = [getZone(124), getZone(184)];
 
 var teamOneLevel = 1;
 var teamTwoLevel = 1;
 
-var minerUnits = [Unit.DwarfChampion, Unit.HorseMaiden, Unit.HippogriffHero];
-var minerBonuses1 = [ConquestBonus.BForgeRelics, ConquestBonus.BColonizeCost, ConquestBonus.BHousePopulation];
-var minerBonuses2 = [ConquestBonus.BWinter, ConquestBonus.BSilo, ConquestBonus.BPopGrowth];
+var teamOneBonusXP = 0.0;
+var teamTwoBonusXP = 0.0;
+
+var minerUnits = [Unit.DwarfChampion, Unit.HorseMaiden, Unit.HippogriffHero, Unit.GayantHero];
+var minerBonuses1 = [ConquestBonus.BForgeRelics, ConquestBonus.BColonizeCost, ConquestBonus.BHousePopulation, ConquestBonus.BIdavollThunderUnit];
+var minerBonuses2 = [ConquestBonus.BWinter, ConquestBonus.BSilo, ConquestBonus.BPopGrowth, ConquestBonus.BIdavollBlindAbility];
 var minerMessages = [
-    "[MINER Lv.1]: [DwarfChampion]. Slow miner and smith.\n-50% [Relic] cost and time and -30% Winter Severity",
-    "[MINER Lv.2]: [HorseMaiden]. Moderate miner and smith, can fight outside your territory.\n-30% Colonze Cost + 20% Silo bonus",
-    "[MINER Lv.3]: [HippogriffHero]. Fast miner and smith, can fight and mine outside your territory.\n+2 House space + 60% [Population] Growth"
+    "[MINER Lv.1]: [DwarfChampion]. Slow miner and smith.\n* -50% [Relic] cost and time\n* -30% Winter Severity",
+    "[MINER Lv.2]: [HorseMaiden]. Moderate miner and smith, can fight outside your territory.\n* -40% Colonize Cost\n* 20% Silo bonus",
+    "[MINER Lv.3]: [HippogriffHero]. Fast miner and smith, can fight and mine outside your territory.\n* +3 House space\n* 60% [Population] Growth",
+    "[MINER Lv.4]: [Gelon]. Strong but heavy hitting Tank with AoE.\n* Thunder Blades\n* Holy Blades"
 ];
 
-var attackerUnits = [Unit.Berserker, Unit.Berserker03, Unit.EagleHero];
-var attackerBonuses1 = [ConquestBonus.BUnitFree, ConquestBonus.BNiflheimVampirism, ConquestBonus.BNidavellirDoTUnit];
-var attackerBonuses2 = [ConquestBonus.BWarband, ConquestBonus.BWarchiefCooldown, ConquestBonus.BVanaheimRootUnit];
+var attackerUnits = [Unit.Berserker, Unit.Berserker03, Unit.EagleHero, Unit.Gelon];
+var attackerBonuses1 = [ConquestBonus.BUnitFree, ConquestBonus.BNiflheimVampirism, ConquestBonus.BNidavellirDoTUnit, ConquestBonus.BNidavellirFearUnit];
+var attackerBonuses2 = [ConquestBonus.BWarband, ConquestBonus.BWarchiefCooldown, ConquestBonus.BMuspelheimDoTUnits, ConquestBonus.BMuspelheimAoEUnits];
 var attackerMessages = [
-    "[FIGHTER Lv.1]: [Berserker]. High damage, low defense.\n3 Free Units + 3 Free [Warband]",
-    "[FIGHTER Lv.2]: [Berserker03]. Bigger brother of the Berserker.\nUnits gain Lifesteal + 50% Warchief Cooldown Reduction",
-    "[FIGHTER Lv.3]: [EagleHero]. Swift assassin with ranged attacks.\nPoison Blades + Snaring Blades"
+    "[FIGHTER Lv.1]: [Berserker]. High damage, low defense.\n* 3 Free Units\n* 3 Free [Warband]",
+    "[FIGHTER Lv.2]: [Berserker03]. Bigger brother of the Berserker.\n* Units gain Lifesteal\n* -40% Warchief/Relic Cooldown",
+    "[FIGHTER Lv.3]: [EagleHero]. Swift assassin with ranged attacks.\n* Poison Blades\n* Fire Blades",
+    "[FIGHTER Lv.4]: [GayantHero]. Unstoppable Mage that one shots units.\n* Terror Blades\n* Cleave Blades"
 ];
 
-var defenderUnits = [Unit.BearMaiden, Unit.TurtleHero, Unit.RatMaiden];
-var defenderBonuses1 = [ConquestBonus.BRuinsExploration, ConquestBonus.BTowerMultiShot, ConquestBonus.BMultipleTowers];
-var defenderBonuses2 = [ConquestBonus.BColonizeCost, ConquestBonus.BExplodingTowers, ConquestBonus.BTowerMultiTarget];
+var defenderUnits = [Unit.BearMaiden, Unit.TurtleHero, Unit.RatMaiden, Unit.GiantHero];
+var defenderBonuses1 = [ConquestBonus.BRuinsExploration, ConquestBonus.BCaCTowers, ConquestBonus.BMultipleTowers, ConquestBonus.BNiflheimUnit];
+var defenderBonuses2 = [ConquestBonus.BColonizeCost, ConquestBonus.BExplodingTowers, ConquestBonus.BSilo, ConquestBonus.BVanaheimRootUnit];
 var defenderMessages = [
-    "[DEFENDER Lv.1]: [BearMaiden]. Slow tank, fishes for food, regenerates health.\n-30% Colonize Cost + Ruins yield 2x resources",
-    "[DEFENDER Lv.2]: [TurtleHero]. Durable tank, reduces upgrade and purchase costs.\nTowers shoot two arrows + Exploding Towers",
-    "[DEFENDER Lv.3]: [RatMaiden]. Strong tank, heals all allies in the zone.\nBuild two towers per zone + Towers target 3 enemies"
+    "[DEFENDER Lv.1]: [BearMaiden]. Slow tank, fishes for food, regenerates health.\n* -40% Colonize Cost\n* Ruins yield 2x resources",
+    "[DEFENDER Lv.2]: [TurtleHero]. Durable tank, reduces upgrade and purchase costs.\n* +40% Tower HP\n* Exploding Towers",
+    "[DEFENDER Lv.3]: [RatMaiden]. Strong tank, heals all allies in the zone.\n* Build 2 towers per zone\n* 20% Silo bonus",
+    "[DEFENDER Lv.4]: [GiantHero]. Immovable Tank, does heavy AoE damage.\n* Frost Blades\n* Snaring Blades"
 ];
 
 function init () {
 	if (isHost()) {
-		for (player in state.players) {
-			if (player.isAI) {
-				player.addBonus({ id: ConquestBonus.BCaCTowers, isAdvanced: false });
-				player.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: true });
-				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Food, isAdvanced: true });
-				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Wood, isAdvanced: false });
-				player.addBonus({ id: ConquestBonus.BResBonus, resId:Resource.Money, isAdvanced: false });
-				player.addBonus({ id: ConquestBonus.BMineral, resId:Resource.Stone, isAdvanced: false });
-				player.setAILevel(5);
-				player.addResource(Resource.Gemstone, 40);
-			} else {
-				player.addBonus({ id: ConquestBonus.BCaCTowers, isAdvanced: false });
-			}
-		}
-		state.difficulty = 3;
+		addRule(Rule.NoMaxTerritoryExpand);
+		addRule(Rule.AggressiveIA);
+		addRule(Rule.ManyResources);
+		addRule(Rule.IANeedColonize);
+		addRule(Rule.NeedDefense);
+		addRule(Rule.NoBurnBuilding);
+		addRule(Rule.BifrostTower);
+		addRule(Rule.AggressiveMyrkalfar);
+		addRule(Rule.CantCloseAnimalDens);
 		state.removeVictory(Victory.Fame);
 		state.removeVictory(Victory.Lore);
 		state.removeVictory(Victory.Money);
@@ -89,24 +96,22 @@ function init () {
 		state.removeVictory(Victory.Helheim);
 		state.removeVictory(Victory.MealSquirrel);
 		state.removeVictory(Victory.OwlTitanVic);
-		addRule(Rule.NoMaxTerritoryExpand);
-		addRule(Rule.AggressiveIA);
-		addRule(Rule.ManyResources);
-		addRule(Rule.IANeedColonize);
-		addRule(Rule.NeedDefense);
-		addRule(Rule.AggressiveMyrkalfar);
-		addRule(Rule.CantCloseAnimalDens);
+		me().objectives.add("stone", "Difficulty affects Economy, AI, Jungle & Waves\n\n[Stone] Difficulty - For New Players", {visible:true}, {name:"Stone", action: "setStone"});
+		me().objectives.add("iron", "[Iron] Difficulty - For Experienced Players", {visible:true}, {name:"Iron", action: "setIron"});
+		me().objectives.add("rimesteel", "[RimeSteel] Difficulty - For Veteran Players", {visible:true}, {name:"Rimesteel", action: "setRimesteel"});
+		for (p in state.players) {
+			if (p.isAI) p.setAILevel(5);
+		}
 	}
 }
 
-
 @sync function refreshOwners() {
-	Stag = getZone(206).owner;
-	Wolf = getZone(121).owner;
-	Goat = getZone(29).owner;
-	Bear = getZone(277).owner;
-	Dragon = getZone(196).owner;
-	Horse = getZone(100).owner;
+	p1 = (getZone(206).owner == p1OG) ? p1OG : null;
+	p2 = (getZone(121).owner == p2OG) ? p2OG : null;
+	p3 = (getZone(29).owner == p3OG) ? p3OG : null;
+	p4 = (getZone(277).owner == p4OG) ? p4OG : null;
+	p5 = (getZone(196).owner == p5OG) ? p5OG : null;
+	p6 = (getZone(100).owner == p6OG) ? p6OG : null;
 }
 
 
@@ -124,9 +129,10 @@ function regularUpdate(dt: Float) {
 	var mod720 = currentTime % 720;
 
 	@split[
-		refreshOwners(),
 
-		if (mod15 == 0) doWaveMovement(),
+		if (mod61 == 6) refreshOwners(),
+
+		if (mod15 == 0 && currentTime >= 90) doWaveMovement(),
 
 		if (mod61 == 5) doProgression(),
 
@@ -135,73 +141,164 @@ function regularUpdate(dt: Float) {
 		if (mod180 == 133) spawnMonster(KrownsCamp, 3),
 		if (mod180 == 153) spawnMonster(OresCamp, 4),
 
-		if (mod180 == 3) doWaveSpawning(),
+		if (mod180 == 3 && currentTime >= 90) doWaveSpawning(),
 
 		if (mod720 == 7) spawnBoss(BossCamp),
 	];
 	if (mod15 == 1) pathCheck();
+
+	if (state.time >= 15.0 && TeamBool == false) {
+		TeamBool = true;
+		setTeams();
+	}
+	if (currentTime == 1200) { clearObj(); }
+}
+
+
+function setTeams() {
+	setAlly(p1, p2);
+	setAlly(p1, p3);
+	setAlly(p2, p3);
+	setAlly(p4, p5);
+	setAlly(p4, p6);
+	setAlly(p5, p6);
+	for (p in state.players) {
+		p.genericNotify(
+			"Waves spawn every 3 month\n" +
+			"Scout tiles behind townhall\n" +
+			"Build economy behind townhall\n" +
+			"First [Lore] picks your class:\n\n" +
+			"TOP PATH = Defender\nMIDDLE PATH = Fighter\nBOTTOM PATH = Miner\n\n" +
+			"Class upgrades by team [MilitaryXP]\n" +
+			"4x Hero and 8x Bonus per class\n\n" +
+			"Jungle spawn 3 month: \n[Food],[Wood],[Money],[Stone]\n" +
+			"Boss spawn 12 month: \nTeam-Wide Buffs and Rewards"
+		);
+	}
 }
 
 
 @sync function doWaveMovement() {
-	StagWave = cleanWaveArray(StagWave);
-	BearWave = cleanWaveArray(BearWave);
-	WolfWave = cleanWaveArray(WolfWave);
-	DragonWave = cleanWaveArray(DragonWave);
-	GoatWave = cleanWaveArray(GoatWave);
-	HorseWave = cleanWaveArray(HorseWave);
+	p1Wave = cleanWaveArray(p1Wave);
+	p4Wave = cleanWaveArray(p4Wave);
+	p2Wave = cleanWaveArray(p2Wave);
+	p5Wave = cleanWaveArray(p5Wave);
+	p3Wave = cleanWaveArray(p3Wave);
+	p6Wave = cleanWaveArray(p6Wave);
 
 	@split[
-		sendWave(StagWave, StagAttack, Stag),
-		sendWave(BearWave, BearAttack, Bear),
-		sendWave(WolfWave, WolfAttack, Wolf),
-		sendWave(DragonWave, DragonAttack, Dragon),
-		sendWave(GoatWave, GoatAttack, Goat),
-		sendWave(HorseWave, HorseAttack, Horse),
+		sendWave(p1Wave, p1Attack, p1),
+		sendWave(p4Wave, p4Attack, p4),
+		sendWave(p2Wave, p2Attack, p2),
+		sendWave(p5Wave, p5Attack, p5),
+		sendWave(p3Wave, p3Attack, p3),
+		sendWave(p6Wave, p6Attack, p6),
 	];
+}
+
+@sync function clearObj() {
+    me().objectives.setVisible("stone", false);
+    me().objectives.setVisible("iron", false);
+    me().objectives.setVisible("rimesteel", false);
+}
+
+@sync function setStone() {
+    Difficulty = 1;
+    state.difficulty = 1;
+    clearObj();
+    for (p in state.players) {
+        p.addResource(Resource.Gemstone, 5);
+        p.genericNotify("[Stone] Difficulty selected!\nThe game will be easy");
+    }
+}
+
+@sync function setIron() {
+    Difficulty = 2;
+    state.difficulty = 2;
+    clearObj();
+    for (p in state.players) {
+        p.addResource(Resource.Gemstone, 2);
+        p.genericNotify("[Iron] Difficulty selected!\nThe game will be hard");
+        if (p.isAI) {
+            p.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Food, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Wood, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Money, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BMineral, resId: Resource.Stone, isAdvanced: false });
+        }
+    }
+}
+
+@sync function setRimesteel() {
+    Difficulty = 4;
+    state.difficulty = 3;
+    clearObj();
+    for (p in state.players) {
+        p.genericNotify("[RimeSteel] Difficulty selected!\nThe game will be hardcore");
+        if (p.isAI) {
+            p.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: true });
+            p.addBonus({ id: ConquestBonus.BCaCTowers, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BNiflheimVampirism, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Food, isAdvanced: true });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Wood, isAdvanced: true });
+            p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Money, isAdvanced: true });
+            p.addBonus({ id: ConquestBonus.BMineral, resId: Resource.Stone, isAdvanced: true });
+        }
+    }
 }
 
 
 @sync function doProgression() {
-	var teamOneXP = 0.0;
-	var teamTwoXP = 0.0;
 
-	if (Stag != null) teamOneXP += Stag.getResource(Resource.MilitaryXP);
-	if (Wolf != null) teamOneXP += Wolf.getResource(Resource.MilitaryXP);
-	if (Goat != null) teamOneXP += Goat.getResource(Resource.MilitaryXP);
-
-	if (Bear != null) teamTwoXP += Bear.getResource(Resource.MilitaryXP);
-	if (Dragon != null) teamTwoXP += Dragon.getResource(Resource.MilitaryXP);
-	if (Horse != null) teamTwoXP += Horse.getResource(Resource.MilitaryXP);
-
-	if (teamOneXP > 4000) {
-		teamOneLevel = teamOneXP > 10000 ? 3 : 2;
+	for (p in state.players) {
+		if (p == null) continue;
+		if (p.clan == Clan.Pack || p.clan == Clan.Lynx) {
+			var isTeam1 = (p == p1OG || p == p2OG || p == p3OG);
+			if (isTeam1) teamOneBonusXP += 100;
+			else teamTwoBonusXP += 100;
+		}
 	}
-	if (teamTwoXP > 4000) {
-		teamTwoLevel = teamTwoXP > 10000 ? 3 : 2;
+
+	var teamOneXP = teamOneBonusXP;
+	var teamTwoXP = teamTwoBonusXP;
+
+	if (p1 != null) teamOneXP += p1.getResource(Resource.MilitaryXP);
+	if (p2 != null) teamOneXP += p2.getResource(Resource.MilitaryXP);
+	if (p3 != null) teamOneXP += p3.getResource(Resource.MilitaryXP);
+
+	if (p4 != null) teamTwoXP += p4.getResource(Resource.MilitaryXP);
+	if (p5 != null) teamTwoXP += p5.getResource(Resource.MilitaryXP);
+	if (p6 != null) teamTwoXP += p6.getResource(Resource.MilitaryXP);
+
+	var xpMult = if (Difficulty == 4) 1.4 else if (Difficulty == 2) 1.15 else 1.0;
+
+	if (teamOneXP > (4200 * xpMult)) {
+		teamOneLevel = teamOneXP > (26000 * xpMult) ? 4 : (teamOneXP > (10500 * xpMult) ? 3 : 2);
 	}
+	if (teamTwoXP > (4200 * xpMult)) {
+		teamTwoLevel = teamTwoXP > (26000 * xpMult) ? 4 : (teamTwoXP > (10500 * xpMult) ? 3 : 2);
+	}
+
 
 	var level = math.max(teamOneLevel, teamTwoLevel);
-
 	for (p in state.players) {
 		if (p == null) continue;
 
 		if (p.getResource(Resource.RimeSteel) > 0) {
 			p.setResource(Resource.RimeSteel, 0);
 
-
-
-			var isTeam1 = (p.clan == Clan.Wolf || p.clan == Clan.Stag || p.clan == Clan.Goat);
-			var team = isTeam1 ? [Wolf, Stag, Goat] : [Horse, Dragon, Bear];
+			var isTeam1 = (p == p1OG || p == p2OG || p == p3OG);
+			var team = isTeam1 ? [p1, p2, p3] : [p4, p5, p6];
 
 			for (member in team) {
 				if (member == null) continue;
-
-				member.addResource(Resource.Gemstone, level);
-				member.addResource(Resource.Fame, level*50);
-				member.addResource(Resource.Lore, level*200);
-				member.genericNotify("Your team killed the Boss! You gain " + level*200 + " [Lore], " + level*50 + " [Fame], " + level + " [Gemstone]");
-			}
+				member.addResource(Resource.Gemstone, 1);
+				member.addResource(Resource.Food, math.floor(level * 150));
+				member.addResource(Resource.Wood, math.floor(level * 150));
+				member.addResource(Resource.Money, math.floor(level * 150));
+				member.addResource(Resource.MilitaryXP, math.floor(level * 150));
+				member.genericNotify("Your team killed the Boss! You gain " + math.floor(level*150) + " [Food], [Wood], [Money], [MilitaryXP] and 1 [Gemstone]");
+				}
 			return;
 		}
 	}
@@ -211,15 +308,30 @@ function regularUpdate(dt: Float) {
     for (p in state.players) {
         if (p == null) continue;
 
-        var zone = p.getBuilding(Building.TownHall).zone;
+        var zone = null;
+        var th = p.getBuilding(Building.TownHall);
+        if (th == null) th = p.getBuilding(Building.CarolingianTownHall);
+        if (th == null) th = p.getBuilding(Building.CarolingianTownHallPop);
+        if (th == null) th = p.getBuilding(Building.CarolingianTownHallMilitary);
+        if (th == null) continue;
+
+        zone = th.zone;
         if (zone == null) continue;
 
-        var isTeam1 = (p.clan == Clan.Stag || p.clan == Clan.Wolf || p.clan == Clan.Goat);
+        var isTeam1 = (p == p1OG || p == p2OG || p == p3OG);
         var teamLevel = isTeam1 ? teamOneLevel : teamTwoLevel;
 
-        if (teamLevel < 1 || teamLevel > 3) continue;
+        if (teamLevel < 1 || teamLevel > 4) continue;
 
-        if (p.hasTech(Tech.Lumber) && !p.hasBonus(attackerBonuses1[0]) && !p.hasBonus(minerBonuses1[0])) {
+        var hasDefTech = (p.hasTech(Tech.Lumber) || p.hasTech(Tech.SimpleLiving) || p.hasTech(Tech.FertileSoils));
+        var hasFightTech = (p.hasTech(Tech.Weaponsmith) || p.hasTech(Tech.Frenzy) || p.hasTech(Tech.MilitaryFunds) || p.hasTech(Tech.EndlessTide) || p.hasTech(Tech.KitchenNightmare) || p.hasTech(Tech.EnforcedEnrollment) || p.hasTech(Tech.InlandProtection) || p.hasTech(Tech.CarnivorousFlower) || p.hasTech(Tech.Bloodthirst) || p.hasTech(Tech.PrivateArmy));
+        var hasMineTech = (p.hasTech(Tech.Mining) || p.hasTech(Tech.Excavation) || p.hasTech(Tech.GreatDeeds) || p.hasTech(Tech.WinterFestival) || p.hasTech(Tech.LayLayLand) || p.hasTech(Tech.Economics) || p.hasTech(Tech.ChainTasks) || p.hasTech(Tech.Scavenger) || p.hasTech(Tech.Landlords) || p.hasTech(Tech.MineralRoots) || p.hasTech(Tech.Characoal));
+
+        var hasDefBonus = p.hasBonus(defenderBonuses1[0]);
+        var hasFightBonus = p.hasBonus(attackerBonuses1[0]);
+        var hasMineBonus = p.hasBonus(minerBonuses1[0]);
+
+        if (hasDefTech && !hasFightBonus && !hasMineBonus) {
             if (!p.hasBonus(defenderBonuses1[teamLevel - 1])) {
                 p.addBonus({ id: defenderBonuses1[teamLevel - 1], isAdvanced: false });
                 p.addBonus({ id: defenderBonuses2[teamLevel - 1], isAdvanced: false });
@@ -229,7 +341,7 @@ function regularUpdate(dt: Float) {
             continue;
         }
 
-        if ((p.hasTech(Tech.Weaponsmith) || p.hasTech(Tech.Frenzy)) && !p.hasBonus(defenderBonuses1[0]) && !p.hasBonus(minerBonuses1[0])) {
+        if (hasFightTech && !hasDefBonus && !hasMineBonus) {
             if (!p.hasBonus(attackerBonuses1[teamLevel - 1])) {
                 p.addBonus({ id: attackerBonuses1[teamLevel - 1], isAdvanced: false });
                 p.addBonus({ id: attackerBonuses2[teamLevel - 1], isAdvanced: false });
@@ -239,7 +351,7 @@ function regularUpdate(dt: Float) {
             continue;
         }
 
-        if ((p.hasTech(Tech.Mining) || p.hasTech(Tech.Excavation) || p.hasTech(Tech.GreatDeeds) || p.hasTech(Tech.WinterFestival)) && !p.hasBonus(defenderBonuses1[0]) && !p.hasBonus(attackerBonuses1[0])) {
+        if (hasMineTech && !hasDefBonus && !hasFightBonus) {
             if (!p.hasBonus(minerBonuses1[teamLevel - 1])) {
                 p.addBonus({ id: minerBonuses1[teamLevel - 1], isAdvanced: false });
                 p.addBonus({ id: minerBonuses2[teamLevel - 1], isAdvanced: false });
@@ -259,9 +371,20 @@ function regularUpdate(dt: Float) {
 	var toKill = [];
 	for (p in state.players) {
 		if (p == null) continue;
-		var mercs = p.getUnits(Unit.Mercenary);
-		if (mercs != null) {
-			for (unit in mercs) {
+		var dragons = p.getUnits(Unit.OldDragon);
+		if (dragons != null) {
+			for (unit in dragons) {
+				if (unit != null) {
+					var unitZone = unit.zone;
+					if (unit.life <= 0.0 || unitZone == null || unitZone.owner == null || unitZone.owner == unit.owner) {
+						toKill.push(unit);
+					}
+				}
+			}
+		}
+		var cannons = p.getUnits(Unit.Hildegard);
+		if (cannons != null) {
+			for (unit in cannons) {
 				if (unit != null) {
 					var unitZone = unit.zone;
 					if (unit.life <= 0.0 || unitZone == null || unitZone.owner == null || unitZone.owner == unit.owner) {
@@ -277,29 +400,28 @@ function regularUpdate(dt: Float) {
 		}
 	}
 
-	// Only spawn waves if BOTH players in a lane are alive (non-null).
-	if (Stag != null && Bear != null && getZone(206).owner == Stag && getZone(277).owner == Bear) {
-		StagWave = spawnWave(206, Stag);
-		BearWave = spawnWave(277, Bear);
+	if (p1 != null && p4 != null && getZone(206).owner == p1 && getZone(277).owner == p4) {
+		p1Wave = spawnWave(206, p1);
+		p4Wave = spawnWave(277, p4);
 	} else {
-		StagWave = [];
-		BearWave = [];
+		p1Wave = [];
+		p4Wave = [];
 	}
 
-	if (Wolf != null && Dragon != null && getZone(121).owner == Wolf && getZone(196).owner == Dragon) {
-		WolfWave = spawnWave(121, Wolf);
-		DragonWave = spawnWave(196, Dragon);
+	if (p2 != null && p5 != null && getZone(121).owner == p2 && getZone(196).owner == p5) {
+		p2Wave = spawnWave(121, p2);
+		p5Wave = spawnWave(196, p5);
 	} else {
-		WolfWave = [];
-		DragonWave = [];
+		p2Wave = [];
+		p5Wave = [];
 	}
 
-	if (Goat != null && Horse != null && getZone(29).owner == Goat && getZone(100).owner == Horse) {
-		GoatWave = spawnWave(29, Goat);
-		HorseWave = spawnWave(100, Horse);
+	if (p3 != null && p6 != null && getZone(29).owner == p3 && getZone(100).owner == p6) {
+		p3Wave = spawnWave(29, p3);
+		p6Wave = spawnWave(100, p6);
 	} else {
-		GoatWave = [];
-		HorseWave = [];
+		p3Wave = [];
+		p6Wave = [];
 	}
 }
 
@@ -325,6 +447,7 @@ function regularUpdate(dt: Float) {
 
 	return cleanedWave;
 }
+
 
 
 @sync function sendWave(wave:Array<Unit>, attackPath:Array<Zone>, owner):Void {
@@ -358,16 +481,19 @@ function regularUpdate(dt: Float) {
 	if (p == null) return [];
 
 	var TempArray = [];
-	var unitCount = 0;
+	var level = math.max(teamOneLevel, teamTwoLevel);
 
-	if (Wave % 3 != 0) {
-		unitCount = math.floor(math.max(teamOneLevel, teamTwoLevel));
-		TempArray = getZone(z).addUnit(Unit.Mercenary, unitCount, p);
-		p.genericNotify("[Wave "+ Wave + "]: " + unitCount + "x Minions have spawned!");
+	var unitCount = level;
+	if (Difficulty == 4 && level == 1) unitCount = 2;
+
+	var cannonFreq = if (Difficulty == 4) 2 else if (Difficulty == 2) 3 else 4;
+
+	if (Wave % cannonFreq != 0) {
+		TempArray = getZone(z).addUnit(Unit.OldDragon, math.floor(unitCount), p);
+		p.genericNotify("[Wave "+ Wave + "]: " + math.floor(unitCount) + "x Minions have spawned!");
 	} else {
-		unitCount = math.floor(math.max(teamOneLevel, teamTwoLevel)*2);
-		TempArray = getZone(z).addUnit(Unit.Mercenary, unitCount, p);
-		p.genericNotify("[MEGA WAVE "+ Wave + "]: " + unitCount + "x Minions have spawned!");
+		TempArray = getZone(z).addUnit(Unit.Hildegard, math.floor(unitCount), p);
+		p.genericNotify("[WAVE "+ Wave + "]: " + math.floor(unitCount) + "x CANNONS HAVE SPAWNED!");
 		shakeCamera(false);
 	}
 
@@ -385,43 +511,56 @@ function regularUpdate(dt: Float) {
 
 @sync function spawnMonster(camps:Array<Zone>, type : Int) {
 	var level = math.max(teamOneLevel, teamTwoLevel);
+    var maxMonsters = math.min(Difficulty + 2, 5);
 
-	for (zone in camps) {
-		if (zone == null) continue;
+    for (zone in camps) {
+        if (zone == null) continue;
 
-		var counter = 0;
-		var units = zone.units;
-		if (units == null) continue;
+        var counter = 0;
+        var units = zone.units;
+        if (units == null) continue;
 
-		for (unit in units) {
-			if (unit != null && unit.owner == null) {
-				counter++;
-			}
-		}
+        for (unit in units) {
+            if (unit != null && unit.owner == null) {
+                counter++;
+            }
+        }
 
-		if (counter >= 3) continue;
+        if (counter >= maxMonsters) continue;
 
-		if (level == 1) {
-			if (type == 1) zone.addUnit(Unit.SpecterWarrior, 1, null);
-			else if (type == 2) zone.addUnit(Unit.Lightalfar, 1, null);
-			else if (type == 3) zone.addUnit(Unit.DwarfFoe, 1, null);
-		} else if (level == 2) {
-			if (type == 1) zone.addUnit(Unit.IdavollValkyrie, 1, null);
-			else if (type == 2) zone.addUnit(Unit.DwarfChampionFoe, 1, null);
-			else if (type == 3) zone.addUnit(Unit.DwarfKingFoe, 1, null);
-			else if (type == 4) zone.addUnit(Unit.SmallGolem, 1, null);
-		} else {
-			if (type == 1) zone.addUnit(Unit.IceGolem, 1, null);
-			else if (type == 2) zone.addUnit(Unit.Valkyrie, 1, null);
-			else if (type == 3) zone.addUnit(Unit.UndeadGiant, 1, null);
-			else if (type == 4) zone.addUnit(Unit.RimesteelGolem, 1, null);
-		}
-	}
+        if (level == 1) {
+            if (type == 1) zone.addUnit(Unit.Fox, 1, null);
+            else if (type == 2) zone.addUnit(Unit.Death, 1, null);
+            else if (type == 3) zone.addUnit(Unit.DwarfFoe, 1, null);
+        } else if (level == 2) {
+            if (type == 1) zone.addUnit(Unit.Wolf, 1, null);
+            else if (type == 2) zone.addUnit(Unit.DwarfChampionFoe, 1, null);
+            else if (type == 3) zone.addUnit(Unit.DwarfKingFoe, 1, null);
+            else if (type == 4) zone.addUnit(Unit.SmallGolem, 1, null);
+        } else if (level == 3) {
+            if (type == 1) zone.addUnit(Unit.Bear, 1, null);
+            else if (type == 2) zone.addUnit(Unit.Valkyrie, 1, null);
+            else if (type == 3) zone.addUnit(Unit.UndeadGiant, 1, null);
+            else if (type == 4) zone.addUnit(Unit.RimesteelGolem, 1, null);
+        } else {
+            if (type == 1) zone.addUnit(Unit.Boar, 1, null);
+            else if (type == 2) zone.addUnit(Unit.IdavollValkyrie, 1, null);
+            else if (type == 3) zone.addUnit(Unit.IceGolem, 1, null);
+            else if (type == 4) zone.addUnit(Unit.WaveIronGolem, 1, null);
+        }
+    }
 }
 
 
 @sync function spawnBoss(camps:Array<Zone>) {
 	var level = math.max(teamOneLevel, teamTwoLevel);
+	if (Difficulty > 0) {
+		for (p in state.players) {
+			if (p.isAI) {
+				p.addResource(Resource.Gemstone, math.floor((Difficulty*Difficulty*Difficulty)));
+			}
+		}
+	}
 
 	for (zone in camps) {
 		if (zone == null) continue;
