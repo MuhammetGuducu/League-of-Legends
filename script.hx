@@ -50,30 +50,30 @@ var minerUnits = [Unit.DwarfChampion, Unit.HorseMaiden, Unit.HippogriffHero, Uni
 var minerBonuses1 = [ConquestBonus.BForgeRelics, ConquestBonus.BColonizeCost, ConquestBonus.BHousePopulation, ConquestBonus.BIdavollThunderUnit];
 var minerBonuses2 = [ConquestBonus.BWinter, ConquestBonus.BSilo, ConquestBonus.BPopGrowth, ConquestBonus.BIdavollBlindAbility];
 var minerMessages = [
-    "[MINER Lv.1]: [DwarfChampion]. Slow miner and smith.\n* -50% [Relic] cost and time\n* -30% Winter Severity",
-    "[MINER Lv.2]: [HorseMaiden]. Moderate miner and smith, can fight outside your territory.\n* -40% Colonize Cost\n* 20% Silo bonus",
-    "[MINER Lv.3]: [HippogriffHero]. Fast miner and smith, can fight and mine outside your territory.\n* +3 House space\n* 60% [Population] Growth",
-    "[MINER Lv.4]: [Gelon]. Strong but heavy hitting Tank with AoE.\n* Thunder Blades\n* Holy Blades"
+    "[MINER Lv.1]: [DwarfChampion]. Slow miner and smith.\n*3 Gemstone\n* -50% [Relic] cost and time\n* -30% Winter Severity",
+    "[MINER Lv.2]: [HorseMaiden]. Moderate miner and smith, can fight outside your territory.\n*3 Gemstone\n* -40% Colonize Cost\n* 20% Silo bonus",
+    "[MINER Lv.3]: [HippogriffHero]. Fast miner and smith, can fight and mine outside your territory.\n*3 Gemstone\n* +3 House space\n* 60% [Population] Growth",
+    "[MINER Lv.4]: [Gelon]. Strong and heavy hitting Tank with AoE.\n*3 Gemstone\n* Thunder Blades\n* Holy Blades"
 ];
 
 var attackerUnits = [Unit.Berserker, Unit.Berserker03, Unit.EagleHero, Unit.Gelon];
 var attackerBonuses1 = [ConquestBonus.BUnitFree, ConquestBonus.BNiflheimVampirism, ConquestBonus.BNidavellirDoTUnit, ConquestBonus.BNidavellirFearUnit];
-var attackerBonuses2 = [ConquestBonus.BWarband, ConquestBonus.BWarchiefCooldown, ConquestBonus.BMuspelheimDoTUnits, ConquestBonus.BMuspelheimAoEUnits];
+var attackerBonuses2 = [ConquestBonus.BWarchief, ConquestBonus.BWarchiefCooldown, ConquestBonus.BMuspelheimDoTUnits, ConquestBonus.BMuspelheimAoEUnits];
 var attackerMessages = [
-    "[FIGHTER Lv.1]: [Berserker]. High damage, low defense.\n* 3 Free Units\n* 3 Free [Warband]",
-    "[FIGHTER Lv.2]: [Berserker03]. Bigger brother of the Berserker.\n* Units gain Lifesteal\n* -40% Warchief/Relic Cooldown",
-    "[FIGHTER Lv.3]: [EagleHero]. Swift assassin with ranged attacks.\n* Poison Blades\n* Fire Blades",
-    "[FIGHTER Lv.4]: [GayantHero]. Unstoppable Mage that one shots units.\n* Terror Blades\n* Cleave Blades"
+    "[FIGHTER Lv.1]: [Berserker]. High damage, low defense.\n*3 Gemstone\n* First 3 Units free\n* -50% Warchief cost",
+    "[FIGHTER Lv.2]: [Berserker03]. Bigger brother of the Berserker.\n*3 Gemstone\n* Lifesteal Blades\n* -40% Warchief/Relic Cooldown",
+    "[FIGHTER Lv.3]: [EagleHero]. Swift assassin with ranged attacks.\n*3 Gemstone\n* Poison Blades\n* Fire Blades",
+    "[FIGHTER Lv.4]: [GayantHero]. Unstoppable Mage that one shots units.\n*3 Gemstone\n* Terror Blades\n* Cleave Blades"
 ];
 
 var defenderUnits = [Unit.BearMaiden, Unit.TurtleHero, Unit.RatMaiden, Unit.GiantHero];
-var defenderBonuses1 = [ConquestBonus.BRuinsExploration, ConquestBonus.BCaCTowers, ConquestBonus.BMultipleTowers, ConquestBonus.BNiflheimUnit];
+var defenderBonuses1 = [ConquestBonus.BWarband, ConquestBonus.BCaCTowers, ConquestBonus.BMultipleTowers, ConquestBonus.BNiflheimUnit];
 var defenderBonuses2 = [ConquestBonus.BColonizeCost, ConquestBonus.BExplodingTowers, ConquestBonus.BSilo, ConquestBonus.BVanaheimRootUnit];
 var defenderMessages = [
-    "[DEFENDER Lv.1]: [BearMaiden]. Slow tank, fishes for food, regenerates health.\n* -40% Colonize Cost\n* Ruins yield 2x resources",
-    "[DEFENDER Lv.2]: [TurtleHero]. Durable tank, reduces upgrade and purchase costs.\n* +40% Tower HP\n* Exploding Towers",
-    "[DEFENDER Lv.3]: [RatMaiden]. Strong tank, heals all allies in the zone.\n* Build 2 towers per zone\n* 20% Silo bonus",
-    "[DEFENDER Lv.4]: [GiantHero]. Immovable Tank, does heavy AoE damage.\n* Frost Blades\n* Snaring Blades"
+    "[DEFENDER Lv.1]: [BearMaiden]. Slow tank, fishes for food, regenerates health.\n*3 Gemstone\n* -40% Colonize Cost\n* +3 Warband",
+    "[DEFENDER Lv.2]: [TurtleHero]. Durable tank, reduces upgrade and purchase costs.\n*3 Gemstone\n* +40% Tower HP\n* Exploding Towers",
+    "[DEFENDER Lv.3]: [RatMaiden]. Strong tank, heals all allies in the zone.\n*3 Gemstone\n* Build 2 towers per zone\n* 20% Silo bonus",
+    "[DEFENDER Lv.4]: [GiantHero]. Immovable tank, does heavy AoE damage.\n*3 Gemstone\n* Frost Blades\n* Snaring Blades"
 ];
 
 function init () {
@@ -164,8 +164,8 @@ function setTeams() {
 	setAlly(p5, p6);
 	for (p in state.players) {
 		p.genericNotify(
-			"Waves spawn every 3 month\n" +
-			"Scout tiles behind townhall\n" +
+			"Minions spawn every 3 months\n" +
+			"Build War-Camps for more Minions\n" +
 			"Build economy behind townhall\n" +
 			"First [Lore] picks your class:\n\n" +
 			"TOP PATH = Defender\nMIDDLE PATH = Fighter\nBOTTOM PATH = Miner\n\n" +
@@ -207,7 +207,7 @@ function setTeams() {
     state.difficulty = 1;
     clearObj();
     for (p in state.players) {
-        p.addResource(Resource.Gemstone, 5);
+        p.addResource(Resource.Gemstone, 9);
         p.genericNotify("[Stone] Difficulty selected!\nThe game will be easy");
     }
 }
@@ -217,14 +217,16 @@ function setTeams() {
     state.difficulty = 2;
     clearObj();
     for (p in state.players) {
-        p.addResource(Resource.Gemstone, 2);
+        p.addResource(Resource.Gemstone, 3);
         p.genericNotify("[Iron] Difficulty selected!\nThe game will be hard");
         if (p.isAI) {
             p.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: false });
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Food, isAdvanced: false });
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Wood, isAdvanced: false });
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Money, isAdvanced: false });
+			p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Lore, isAdvanced: false });
             p.addBonus({ id: ConquestBonus.BMineral, resId: Resource.Stone, isAdvanced: false });
+            p.addBonus({ id: ConquestBonus.BWarband, isAdvanced: false });
         }
     }
 }
@@ -234,6 +236,7 @@ function setTeams() {
     state.difficulty = 3;
     clearObj();
     for (p in state.players) {
+		p.addResource(Resource.Gemstone, 1);
         p.genericNotify("[RimeSteel] Difficulty selected!\nThe game will be hardcore");
         if (p.isAI) {
             p.addBonus({ id: ConquestBonus.BPopGrowth, isAdvanced: true });
@@ -242,7 +245,9 @@ function setTeams() {
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Food, isAdvanced: true });
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Wood, isAdvanced: true });
             p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Money, isAdvanced: true });
+			p.addBonus({ id: ConquestBonus.BResBonus, resId: Resource.Lore, isAdvanced: true });
             p.addBonus({ id: ConquestBonus.BMineral, resId: Resource.Stone, isAdvanced: true });
+            p.addBonus({ id: ConquestBonus.BWarband, isAdvanced: true });
         }
     }
 }
@@ -254,8 +259,8 @@ function setTeams() {
 		if (p == null) continue;
 		if (p.clan == Clan.Pack || p.clan == Clan.Lynx) {
 			var isTeam1 = (p == p1OG || p == p2OG || p == p3OG);
-			if (isTeam1) teamOneBonusXP += 100;
-			else teamTwoBonusXP += 100;
+			if (isTeam1) teamOneBonusXP += 120;
+			else teamTwoBonusXP += 120;
 		}
 	}
 
@@ -270,13 +275,13 @@ function setTeams() {
 	if (p5 != null) teamTwoXP += p5.getResource(Resource.MilitaryXP);
 	if (p6 != null) teamTwoXP += p6.getResource(Resource.MilitaryXP);
 
-	var xpMult = if (Difficulty == 4) 1.4 else if (Difficulty == 2) 1.15 else 1.0;
+	var xpMult = if (Difficulty == 4) 1.5 else if (Difficulty == 2) 1.2 else 1.0;
 
-	if (teamOneXP > (4200 * xpMult)) {
-		teamOneLevel = teamOneXP > (26000 * xpMult) ? 4 : (teamOneXP > (10500 * xpMult) ? 3 : 2);
+	if (teamOneXP > (4000 * xpMult)) {
+		teamOneLevel = teamOneXP > (25000 * xpMult) ? 4 : (teamOneXP > (10000 * xpMult) ? 3 : 2);
 	}
-	if (teamTwoXP > (4200 * xpMult)) {
-		teamTwoLevel = teamTwoXP > (26000 * xpMult) ? 4 : (teamTwoXP > (10500 * xpMult) ? 3 : 2);
+	if (teamTwoXP > (4000 * xpMult)) {
+		teamTwoLevel = teamTwoXP > (25000 * xpMult) ? 4 : (teamTwoXP > (10000 * xpMult) ? 3 : 2);
 	}
 
 
@@ -289,15 +294,14 @@ function setTeams() {
 
 			var isTeam1 = (p == p1OG || p == p2OG || p == p3OG);
 			var team = isTeam1 ? [p1, p2, p3] : [p4, p5, p6];
-
 			for (member in team) {
 				if (member == null) continue;
-				member.addResource(Resource.Gemstone, 1);
+				member.addResource(Resource.Gemstone, 3);
 				member.addResource(Resource.Food, math.floor(level * 150));
 				member.addResource(Resource.Wood, math.floor(level * 150));
 				member.addResource(Resource.Money, math.floor(level * 150));
 				member.addResource(Resource.MilitaryXP, math.floor(level * 150));
-				member.genericNotify("Your team killed the Boss! You gain " + math.floor(level*150) + " [Food], [Wood], [Money], [MilitaryXP] and 1 [Gemstone]");
+				member.genericNotify("Your team killed the Boss! You gain " + math.floor(level*150) + " [Food], [Wood], [Money], [MilitaryXP] and 3 [Gemstone]");
 				}
 			return;
 		}
@@ -305,6 +309,7 @@ function setTeams() {
 }
 
 @sync function pathCheck() {
+	var upgraded = false;
     for (p in state.players) {
         if (p == null) continue;
 
@@ -337,6 +342,8 @@ function setTeams() {
                 p.addBonus({ id: defenderBonuses2[teamLevel - 1], isAdvanced: false });
                 zone.addUnit(defenderUnits[teamLevel - 1], 1, p);
                 p.genericNotify(defenderMessages[teamLevel - 1]);
+				p.addResource(Resource.Gemstone, 3);
+				upgraded = true;
             }
             continue;
         }
@@ -347,6 +354,8 @@ function setTeams() {
                 p.addBonus({ id: attackerBonuses2[teamLevel - 1], isAdvanced: false });
                 zone.addUnit(attackerUnits[teamLevel - 1], 1, p);
                 p.genericNotify(attackerMessages[teamLevel - 1]);
+				p.addResource(Resource.Gemstone, 3);
+				upgraded = true;
             }
             continue;
         }
@@ -357,10 +366,13 @@ function setTeams() {
                 p.addBonus({ id: minerBonuses2[teamLevel - 1], isAdvanced: false });
                 zone.addUnit(minerUnits[teamLevel - 1], 1, p);
                 p.genericNotify(minerMessages[teamLevel - 1]);
+				p.addResource(Resource.Gemstone, 3);
+				upgraded = true;
             }
             continue;
         }
     }
+	if (upgraded) sfx(UiSfx.LeagueUp);
 }
 
 
@@ -481,20 +493,22 @@ function setTeams() {
 	if (p == null) return [];
 
 	var TempArray = [];
-	var level = math.max(teamOneLevel, teamTwoLevel);
+	var maxWarband = p.getMax(Resource.Warband);
+	var unitCount = 0;
 
-	var unitCount = level;
-	if (Difficulty == 4 && level == 1) unitCount = 2;
-
-	var cannonFreq = if (Difficulty == 4) 2 else if (Difficulty == 2) 3 else 4;
-
-	if (Wave % cannonFreq != 0) {
+	if (maxWarband < 15) {
+		unitCount = 1 + math.floor(maxWarband/3);
 		TempArray = getZone(z).addUnit(Unit.OldDragon, math.floor(unitCount), p);
-		p.genericNotify("[Wave "+ Wave + "]: " + math.floor(unitCount) + "x Minions have spawned!");
+		p.genericNotify("[Wave "+ Wave + "]: " + math.floor(unitCount) + "x Minions!\nBuild " + math.floor(((15-maxWarband)/2)) + " War-Camps for Cannons!");
+
 	} else {
+		unitCount = 1 + math.floor((maxWarband - 15) / 5);
+		if (unitCount > 5) {
+            unitCount = 5;
+        }
 		TempArray = getZone(z).addUnit(Unit.Hildegard, math.floor(unitCount), p);
-		p.genericNotify("[WAVE "+ Wave + "]: " + math.floor(unitCount) + "x CANNONS HAVE SPAWNED!");
-		shakeCamera(false);
+		p.genericNotify("[WAVE "+ Wave + "]: " + math.floor(unitCount) + "x CANNONS!");
+
 	}
 
 	if (TempArray != null) {
@@ -554,7 +568,8 @@ function setTeams() {
 
 @sync function spawnBoss(camps:Array<Zone>) {
 	var level = math.max(teamOneLevel, teamTwoLevel);
-	if (Difficulty > 0) {
+	sfx(UiSfx.GullveigWakeUp);
+	if (Difficulty > 1) {
 		for (p in state.players) {
 			if (p.isAI) {
 				p.addResource(Resource.Gemstone, math.floor((Difficulty*Difficulty*Difficulty)));
@@ -599,7 +614,10 @@ function setTeams() {
 			} else if (RandomNum == 2) {
 				zone.addUnit(Unit.Golem, 1, null);
 			} else if (RandomNum == 3) {
-				zone.addUnit(Unit.NidavellirIronGolem, 1, null);
+				var bossArray = zone.addUnit(Unit.GayantHero, 1, null);
+				if (bossArray != null && bossArray.length > 0 && bossArray[0] != null) {
+					bossArray[0].owner = null;
+				}
 			}
 		} else {
 			if (RandomNum == 1) {
@@ -608,7 +626,7 @@ function setTeams() {
 					bossArray[0].owner = null;
 				}
 			} else if (RandomNum == 2) {
-				zone.addUnit(Unit.Dracula, 1, null);
+				zone.addUnit(Unit.NidavellirIronGolem, 1, null);
 			} else if (RandomNum == 3) {
 				zone.addUnit(Unit.BabyWyvern, 1, null);
 			}
